@@ -1,0 +1,21 @@
+*{
+    margin:0;
+    padding: 0;
+}
+ul,li,a{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+}
+input{
+    border: none;
+    padding: 0px;
+}
+select{
+    box-sizing: content-box;
+    padding: 0px;
+}
+h1,h2,h3,h4,h5,h6,p{
+    margin: 0;
+}

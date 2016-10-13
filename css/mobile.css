@@ -1,0 +1,13 @@
+body,html{
+    width: 100%;
+}
+.container{
+    margin: 0 auto;
+    max-width: 750px;
+    min-width: 320px;
+}
+.top{
+    height: 40px;
+    width: 100%;
+    background-color: black;
+}
