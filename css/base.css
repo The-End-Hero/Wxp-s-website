@@ -19,3 +19,16 @@ select{
 h1,h2,h3,h4,h5,h6,p{
     margin: 0;
 }
+.clearfix:before, .clearfix:after {
+    /*清除浮动，最好最标准的写法*/
+    content: "";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1; /*IE/7/6*/  /*兼容IE6下的写法*/
+}

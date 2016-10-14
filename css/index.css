@@ -11,6 +11,10 @@ html,body{
     background-color: black;
 }
 .introduce>.up{
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    line-height: 30px;
     position: absolute;
     top: 100%;
     margin-top: -30px;
@@ -25,6 +29,10 @@ html,body{
     transition: all .3s
 }
 .down{
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    line-height: 30px;
     position: fixed;
     width:30px;
     height: 30px;
@@ -48,17 +56,31 @@ html,body{
     z-index: 1;
 }
 .top>.person{
+    display: inline-block;
     font-size: 18px;
-    margin-left: 10px;
+    padding-left: 10px;
     color: white;
     font-weight: 100;
+    height: 40px;
+    transition: all 0.2s;
+}
+.top>.person:hover{
+    background-color: white;
+    color: black;
+}
+.top>.person:hover p{
+    /*background-color: white;*/
+    color: black;
 }
 .top>.person>p{
     margin-left: 10px;
     display: inline-block;
     font-size: 16px;
+    line-height: 40px;
+    padding-right: 15px;
     font-family: '微软雅黑';
     color: white;
+    transition: all 0.2s;
 }
 .top>h4{
     display: inline-block;
@@ -72,10 +94,19 @@ html,body{
     margin-left: -40px;
 }
 .top>.github{
+    float: right;
     color: white;
     font-size: 14px;
     font-family: '微软雅黑';
     line-height: 40px;
+    transition: all .2s;
+}
+.top>.github:hover{
+    color: black;
+    background-color: white;
+}
+.top>.github:hover .github-pic{
+    color: black;
 }
 .top>.github>p{
     float: right;
@@ -83,12 +114,15 @@ html,body{
  }
 .top>.github>.github-pic{
     float: right;
-    background-color: white;
-    background: url("../images/github.png");
+    color: white;
+    font-size: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+    /*background: url("../images/github.png");*/
     background-size: 30px;
-    margin-top:5px;
     width: 30px;
     height: 30px;
+    transition: all 0.2s;
 }
 .w{
     width: 80%;
