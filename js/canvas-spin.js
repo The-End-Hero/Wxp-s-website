@@ -1,5 +1,5 @@
 /**
- * Created by VTEC on 2016/10/14.
+ * Created by VTEC on 2016/10/17.
  */
 var cv=document.getElementById('c')
 var ctx=cv.getContext('2d');
@@ -26,29 +26,29 @@ var x0=cv.width/ 2,y0=cv.height/ 2,//圆心点坐标
 
 //大小圆的颜色值数据
 var bigCircles=[{
-    'color':"rgba(178, 58, 238,0.7)",
+    'color':"rgba(178, 58, 238,0.5)",
     'title':'jQurey'
 },{
-    'color':"rgba(139, 69, 19,0.7)",
+    'color':"rgba(139, 69, 19,0.5)",
     'title':'Angular'
 },{
-    'color':"rgba(16, 78, 139,0.7)",
+    'color':"rgba(16, 78, 139,0.5)",
     'title':'Vue'
 },{
-    'color':"rgba(165, 42, 42,0.7)",
+    'color':"rgba(165, 42, 42,0.5)",
     'title':'Node'
 },{
-    'color':"rgba(205, 155, 29,0.7)",
+    'color':"rgba(205, 155, 29,0.5)",
     'title':'React'
 }]
 var smallCircles=[{
-    'color':"rgba(255,0,0,0.7)",
+    'color':"rgba(255,0,0,0.5)",
     'title':'JS'
 },{
-    'color':"rgba(255,255,0,0.7)",
+    'color':"rgba(255,255,0,0.5)",
     'title':'CSS'
 },{
-    'color':"rgba(0,0,255,0.7)",
+    'color':"rgba(0,0,255,0.5)",
     'title':'HTML'
 }];
 var render= function () {
@@ -61,7 +61,12 @@ var render= function () {
 
     //绘制中心园
     ctx.arc(x0,y0,55,0,Math.PI*2)
-    ctx.fillStyle='rgba(0,0,0,0.7)'
+    ctx.fillStyle='rgba(0,0,0,0.5)'
+    ctx.fill()
+    //绘制重叠圆
+    ctx.beginPath()
+    ctx.arc(x0,y0,55-10,0,Math.PI*2)
+    ctx.fillStyle='rgba(0,0,0,0.5)'
     ctx.fill()
     ctx.beginPath()
     ctx.textAlign='center'
@@ -71,8 +76,8 @@ var render= function () {
     ctx.fillText('前端',x0,y0, 300)
     //绘制外环
     ctx.beginPath()
-    ctx.setLineDash([5])
-    ctx.strokeStyle='rgba(102,102,102,0.7)'
+    ctx.setLineDash([5])//虚线的空隙
+    ctx.strokeStyle='rgba(102,102,102,0.7)'//虚线的颜色
     ctx.arc(x0,y0,outerRaidus,0,Math.PI*2)
     ctx.stroke()
     //绘制内环
@@ -95,6 +100,10 @@ var render= function () {
         ctx.fillStyle=bigCircles[i].color
         ctx.fill()
         ctx.beginPath()
+        ctx.arc(tempX,tempY,bigRadius-10,0,Math.PI*2)
+        ctx.fillStyle=bigCircles[i].color
+        ctx.fill()
+        ctx.beginPath()
         ctx.textAlign='center'
         ctx.textBaseline='middle'
         ctx.fillStyle='white'
@@ -105,6 +114,7 @@ var render= function () {
     ctx.restore()
 
     ctx.save();
+    //绘制内环的圆
     for(var i=0;i<smallCircles.length;i++){
         ctx.beginPath();
         // 计算圆弧上点的坐标
@@ -112,6 +122,10 @@ var render= function () {
             tempY = y0 + innerRadius * Math.sin( toRadian(smallStartAngle) );
 
         ctx.arc(tempX, tempY, smallRadius, 0, Math.PI * 2);
+        ctx.fillStyle = smallCircles[i].color;
+        ctx.fill();
+        ctx.beginPath()
+        ctx.arc(tempX, tempY, smallRadius-8, 0, Math.PI * 2);
         ctx.fillStyle = smallCircles[i].color;
         ctx.fill();
         ctx.beginPath()

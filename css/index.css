@@ -25,6 +25,8 @@ html,body{
 .introduce>ul>li{
     color: white;
     font-family: '微软雅黑';
+    font-size: 14px;
+    line-height: 25px;
 }
 .erwei{
     position:fixed;
