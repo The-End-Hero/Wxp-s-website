@@ -43,4 +43,17 @@ $(function () {
             })
         });
     })
+    //个人简介手风琴效果
+    var lis_ind=document.querySelectorAll('.shou')
+    var num_ind=2
+    for(var i= 0;i<lis_ind.length;i++){
+        lis_ind[i].onmouseover= function () {
+            for(var j=0;j<lis_ind.length;j++){
+                lis_ind[j].firstChild.style.width='0%'
+            }
+            this.firstChild.style.width='100%'
+            this.parentNode.style.zIndex=++num_ind+''
+        }
+
+    }
 })
