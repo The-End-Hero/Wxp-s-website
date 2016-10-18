@@ -1,6 +1,5 @@
 html,body{
     min-width: 1300px;
-    /*background-color: #dcdcdc;*/
 }
 .introduce{
     display: none;
@@ -31,14 +30,11 @@ html,body{
 .introduce>ul{
     margin-top: 4px;
     margin-left: 10px ;
-    padding-right: 10px;
-    /*margin:4px 0px 0px 10px;*/
-    /*box-sizing: content-box;*/
-    /*padding: 4px 10px 0px 10px;*/
 }
 .introduce>ul>li{
     position: relative;
     height: 50px;
+    padding-right: 10px;
 }
 .introduce>ul>li>a{
     position: absolute;
