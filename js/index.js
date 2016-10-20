@@ -15,10 +15,18 @@ $(function () {
         $('.weather p').on('mouseleave', function () {
             $('.weather span').stop(true,true).hide(500)
         })
-
-
     })
-
+    //头像
+    $('.me').on('mouseenter', function () {
+        $('.me span').css({
+            left:'100%'
+        })
+    })
+    $('.me').on('mouseleave', function () {
+        $('.me span').css({
+            left:'-100%'
+        })
+    })
     //down闪光灯效果
     time_down=setInterval(function () {
         autoPlay($('.down'))

@@ -18,6 +18,19 @@ html,body{
     background-size: 100% 100%;
     border-radius: 50%;
     box-shadow: 0px 0px 8px 1px gray;
+    position: relative;
+    overflow: hidden;
+}
+.introduce>.me span{
+    top: 0px;
+    width: 160px;
+    height: 160px;
+    background-image: -webkit-linear-gradient(0deg, rgba(255,255,255,0), rgba(255,255,255,0.5), rgba(255,255,255,0));
+    transition:all 1s;
+    z-index:5;
+    position: absolute;
+    left:-100%;
+    transform: skewX(-25deg);
 }
 .introduce>.color_left{
     position: absolute;
@@ -261,15 +274,14 @@ html,body{
     font-family: '微软雅黑';
     font-size: 16px;
     line-height: 40px;
-    /*z-index: 10;*/
 }
 .weather span{
-    /*display: none;*/
+    display: none;
     position: absolute;
     color: white;
     font-family: '微软雅黑';
     font-size: 14px;
-    /*z-index: 1;*/
+    z-index: 1;
     background-color: #333333;
     opacity:0.6 ;
     /*transition: all .5s;*/
