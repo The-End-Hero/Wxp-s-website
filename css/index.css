@@ -250,3 +250,30 @@ html,body{
     font-size: 12px;
     margin: auto auto;
 }
+
+
+/*模板类*/
+.weather{
+    display: inline-block;
+}
+.weather p{
+    color: white;
+    font-family: '微软雅黑';
+    font-size: 16px;
+    line-height: 40px;
+    /*z-index: 10;*/
+}
+.weather span{
+    /*display: none;*/
+    position: absolute;
+    color: white;
+    font-family: '微软雅黑';
+    font-size: 14px;
+    /*z-index: 1;*/
+    background-color: #333333;
+    opacity:0.6 ;
+    /*transition: all .5s;*/
+}
+/*.weather p:hover .weather span{*/
+    /*display: block;*/
+/*}*/

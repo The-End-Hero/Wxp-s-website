@@ -2,6 +2,23 @@
  * Created by VTEC on 2016/10/14.
  */
 $(function () {
+    //jsonp天气
+    $.getJSON('http://api.jirengu.com/weather.php', function (data) {
+        console.log(data)
+        var str_weather=template('weather',{list:data})
+        $('.weather').html(str_weather)
+        //jsonp事件
+        $('.weather span').hide()
+        $('.weather p').on('mouseenter', function () {
+            $('.weather span').stop(true,true).show(500)
+        })
+        $('.weather p').on('mouseleave', function () {
+            $('.weather span').stop(true,true).hide(500)
+        })
+
+
+    })
+
     //down闪光灯效果
     time_down=setInterval(function () {
         autoPlay($('.down'))
