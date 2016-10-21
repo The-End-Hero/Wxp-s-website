@@ -20,6 +20,13 @@ html,body{
     box-shadow: 0px 0px 8px 1px gray;
     position: relative;
     overflow: hidden;
+    transition: 1s filter, 1s -webkit-filter;
+    -webkit-filter: grayscale(1)sepia(1)blur(1px);
+    filter: grayscale(1)sepia(1)blur(1px);
+}
+.introduce>.me:hover{
+    -webkit-filter: none;
+    filter: none;
 }
 .introduce>.me span{
     top: 0px;
@@ -119,7 +126,8 @@ html,body{
     cursor: pointer;
 }
 .yellow{
-    color: greenyellow;
+    color: crimson;
+    text-shadow: 0 0 15px,0 0 15px;
 }
 .top{
     position: fixed;
@@ -164,11 +172,6 @@ html,body{
     background-color: white;
     color: black;
 }
-/*.top>.tel-1:hover .erwei{*/
-    /*!*display: block;*!*/
-    /*top: 40px;*/
-    /*z-index: 10;*/
-/*}*/
 .top>.tel-1>.tel{
     font-size: 16px;
 }
@@ -278,14 +281,13 @@ html,body{
 .weather span{
     display: none;
     position: absolute;
+    border-radius: 5px;
     color: white;
+    padding-left: 10px;
+    line-height: 35px;
     font-family: '微软雅黑';
     font-size: 14px;
     z-index: 1;
     background-color: #333333;
     opacity:0.6 ;
-    /*transition: all .5s;*/
 }
-/*.weather p:hover .weather span{*/
-    /*display: block;*/
-/*}*/

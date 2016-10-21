@@ -27,14 +27,16 @@ $(function () {
             left:'-100%'
         })
     })
-    //down闪光灯效果
-    time_down=setInterval(function () {
+    //闪光灯效果
+    var time_down=setInterval(function () {
         autoPlay($('.down'))
-    },800)
+    },1000)
     function autoPlay(Obj){
         Obj.toggleClass('yellow')
     }
-
+    var time_h=setInterval(function () {
+        autoPlay($('.top>h4'))
+    },800)
     //二维码显示
     $('.tel-1').on('mouseover', function () {
         $('.erwei').css({
