@@ -30,7 +30,7 @@ $(function () {
     //闪光灯效果
     var time_down=setInterval(function () {
         autoPlay($('.down'))
-    },1000)
+    },500)
     function autoPlay(Obj){
         Obj.toggleClass('yellow')
     }

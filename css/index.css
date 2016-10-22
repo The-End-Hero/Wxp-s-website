@@ -126,8 +126,8 @@ html,body{
     cursor: pointer;
 }
 .yellow{
-    color: crimson;
-    text-shadow: 0 0 15px,0 0 15px;
+    color: red;
+    text-shadow: 0 0 3px,0 0 10px;
 }
 .top{
     position: fixed;
@@ -135,6 +135,7 @@ html,body{
     top:0px;
     left: 0px;
     background-color: black;
+    opacity: 0.9;
     width: 100%;
     height: 40px;
     z-index: 1;
@@ -154,7 +155,6 @@ html,body{
     color: black;
 }
 .top>.person:hover p{
-    /*background-color: white;*/
     color: black;
 }
 .top>.tel-1{
