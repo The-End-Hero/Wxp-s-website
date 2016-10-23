@@ -131,7 +131,7 @@ html,body{
 }
 .top{
     position: fixed;
-    /*margin-top: -40px;*/
+    min-width: 1300px;
     top:0px;
     left: 0px;
     background-color: black;

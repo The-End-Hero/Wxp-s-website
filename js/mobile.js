@@ -4,4 +4,7 @@ $(function () {
         var str=template('loop',{list:data})
         $('#loop-pic').html(str);
     })
+
+
+    
 })
