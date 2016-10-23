@@ -4,7 +4,7 @@
     "url":""
   },
   {
-    "img":"./images/banner-color.jpg",
+    "img":"./images/banner-light.jpg",
     "url":""
   },
   {
@@ -12,19 +12,11 @@
     "url":""
   },
   {
-    "img":"./images/banner-curry.jpg",
+    "img":"./images/banner-science.jpg",
     "url":""
   },
   {
-    "img":"./images/banner-curry.jpg",
-    "url":""
-  },
-  {
-    "img":"./images/banner-curry.jpg",
-    "url":""
-  },
-  {
-    "img":"./images/banner-curry.jpg",
+    "img":"./images/banner-shield.jpg",
     "url":""
   }
 ]
