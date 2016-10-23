@@ -1,6 +1,19 @@
 body,html{
-    width: 100%;
+    width: 10rem;
 }
+/*loop模板引擎*/
+#loop-pic>ul{
+    width: 70rem;
+    height: 100%;
+}
+#loop-pic>ul>li{
+    width: 10rem;
+    float: left;
+}
+
+
+
+
 .container{
     margin: 0 auto;
     max-width: 750px;
@@ -16,7 +29,7 @@ body,html{
     height: 1000px;
     background-color: #cb0a56;
 }
-.main>.loop-pic{
+.main>#loop-pic{
     width: 10rem;
     height: 5rem;
     background-color: #599100;

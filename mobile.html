@@ -13,11 +13,11 @@
 <div class='container'>
     <div class='top'></div>
     <div class='main'>
-        <div class='loop-pic'>
+        <div id='loop-pic'>
             <script id='loop' type=text/html>
             <ul>
             <%for(var i=0;i<list.length;i++){%>
-                <li><a href="<%=%>"><img src="<%=%>"title="<%=%>" alt="<%=%>"><p><%=%></p></a></li>
+                <li><a href="<%=%>"><img src="<%=list[i].img%>"title="<%=%>" alt="<%=%>"><p><%=%></p></a></li>
             <%}%></list.length>
             </ul>
             </script>
@@ -34,6 +34,12 @@
         </div>
     </div>
 </div>
-
+<!-- 导入 zepto框架 -->
+<script src='js/zepto/zepto.min.js'></script>
+<!-- 导入动画模块 提供了 animate方法 -->
+<script src='js/zepto/fx.js'></script>
+<!-- 导入touch.js 才能够绑定 滑动事件 -->
+<script src='js/zepto/touch.js'></script>
+<script src='js/mobile.js'></script>
 </body>
 </html>
