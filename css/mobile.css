@@ -1,27 +1,6 @@
 body,html{
     width: 100%;
 }
-/*loop模板引擎*/
-#loop-pic>ul{
-    width: 70rem;
-    height: 100%;
-}
-#loop-pic>ul>li{
-    width: 10rem;
-    float: left;
-}
-#loop-pic>ul>li>a{
-    display: block;
-    width: 10rem;
-    height: 5rem;
-}
-#loop-pic>ul>li>a>img{
-    width: 10rem;
-    height: 5rem;
-}
-/*模板引擎结束*/
-
-
 .container{
     margin: 0 auto;
     max-width: 750px;
@@ -30,24 +9,23 @@ body,html{
 .top{
     position: fixed;
     z-index: 5;
-    opacity: 0.8;
+    opacity: 1;
     height: 1rem;
     width: 10rem;
     background-color: black;
 }
 .top>.github{
-    /*float: left;*/
     color: white;
     font-size: 14px;
     font-family: '微软雅黑';
-    line-height: 40px;
+    line-height:1rem;
     transition: all .2s;
     cursor: pointer;
 }
 .top>.github>p{
     float: left;
     display: inline-block;
-
+    line-height:1rem;
 }
 .top>.github>.github-pic{
     float: left;
@@ -57,23 +35,63 @@ body,html{
     height: 1rem;
     width: 1rem;
 }
-
-
 .main{
     width: 10rem;
     height: 1000px;
     background-color: black;
 }
 .main>#loop-pic{
+    position:relative ;
     width: 10rem;
     height: 5rem;
     background-color: #599100;
 }
-/*轮播图*/
-#loop-pic ul{
+/*loop模板引擎*/
+#loop-pic{
+    overflow: hidden;
+}
+#loop-pic>#loopUl{
+    width: 70rem;
+    height: 100%;
+    z-index: 9;
     transform: translateX(-10rem);
 }
-
+#loop-pic>#loopUl>li{
+    width: 10rem;
+    float: left;
+}
+#loop-pic>#loopUl>li>a{
+    display: block;
+    width: 10rem;
+    height: 5rem;
+}
+#loop-pic>#loopUl>li>a>img{
+    width: 10rem;
+    height: 5rem;
+}
+#indexUl{
+    z-index: 10;
+    position: absolute;
+    width: 2rem;
+    bottom: 0.2rem;
+    left: 50%;
+    margin-left: -1rem;
+}
+#indexUl li{
+    /*display: inline-block;*/
+    float: left;
+    background-color: white;
+    width: 0.2rem;
+    height: 0.2rem;
+    margin: 0rem  0.05rem;
+    border: 1px solid white;
+    border-radius: 50%;
+}
+#indexUl .black{
+    background-color: black;
+}
+/*模板引擎结束*/
+/*轮播图*/
 .main>.pic{
     width: 10rem;
     height: 30%;
