@@ -29,6 +29,7 @@ body,html{
 }
 .top{
     position: fixed;
+    z-index: 5;
     opacity: 0.8;
     height: 1rem;
     width: 10rem;
@@ -68,6 +69,11 @@ body,html{
     height: 5rem;
     background-color: #599100;
 }
+/*轮播图*/
+#loop-pic ul{
+    transform: translateX(-10rem);
+}
+
 .main>.pic{
     width: 10rem;
     height: 30%;

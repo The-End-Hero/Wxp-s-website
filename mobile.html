@@ -22,9 +22,11 @@
         <div id='loop-pic'>
             <script id='loop' type=text/html>
             <ul>
+                <li><a href="<%=%>"><img src="<%=list[list.length-1].img%>"title="<%=%>" alt="<%=%>"><p><%=%></p></a></li>
             <%for(var i=0;i<list.length;i++){%>
                 <li><a href="<%=%>"><img src="<%=list[i].img%>"title="<%=%>" alt="<%=%>"><p><%=%></p></a></li>
-            <%}%></list.length>
+            <%}%>
+                <li><a href="<%=%>"><img src="<%=list[0].img%>"title="<%=%>" alt="<%=%>"><p><%=%></p></a></li>
             </ul>
             </script>
         </div>
