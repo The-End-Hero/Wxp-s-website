@@ -13,7 +13,7 @@ $(function () {
         //轮播图索引的ul
         var indexUl=$('#indexUl')
         indexUl.children('li').eq(0).addClass('black')
-        //屏幕的宽度
+        //屏幕的宽度,因为rem布局所以10rem就是100%宽度
         //var loopWidth=$('#loop-pic').width();
         //使用定时器实现无限轮播
         var index=1;
@@ -31,15 +31,15 @@ $(function () {
                         'transform':'translateX('+index*-10+'rem)'
                     })
                 }else if(index<=0){
-                    index=8
-                    indexUl.css({
+                    index=5
+                    loopUl.css({
                         'transform':'translateX('+index*-10+'rem)'
                     })
                 }
                 //改变索引ul
                 indexUl.children('li').removeClass('black').eq(index-1).addClass('black')
 
-                if(timerId===undefined){
+                if(timerId==undefined){
                     timerId=setInterval(function () {
                         index++;
                         autoMove()
