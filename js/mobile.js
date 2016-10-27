@@ -54,18 +54,30 @@ $(function () {
             autoMove()
         },1000)
         //手指滑动事件
-        $('#loop-pic').on('swipeLeft', function () {
+        $('#loop-pic').on('swipeLeft', function (e) {
+            console.log(e)
+            e.preventDefault();
             clearInterval(timerId)
             timerId=undefined
             index++
             autoMove()
         })
-        $('#loop-pic').on('swipeRight', function () {
+        $('#loop-pic').on('swipeRight', function (e) {
+            e.preventDefault();
             clearInterval(timerId)
             timerId=undefined
             index--
             autoMove()
         })
+        $('#loop-pic').on('touchstart', function (e) {
+            e.preventDefault();
+        })
+        $('#loop-pic').on('touchmove', function (e) {
+            e.preventDefault();
+        })
+        //$('#loop-pic').on('touchend', function (e) {
+        //    e.preventDefault();
+        //})
 
     }
     top()
