@@ -196,6 +196,14 @@ html,body{
     color: white;
     margin-left: -40px;
 }
+@media screen and (max-width:900px){
+    .top>h4{
+        display:none;
+    }
+    .github{
+        display: none;
+    }
+}
 .top>.github{
     float: right;
     color: white;
