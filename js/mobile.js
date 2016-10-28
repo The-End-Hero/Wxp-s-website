@@ -1,7 +1,7 @@
 $(function () {
     //get获取图片数据
     $.getJSON('./loopPic.php', function (data) {
-        console.log(data)
+        //console.log(data)
         var str=template('loop',{list:data})
         $('#loop-pic').html(str);
         loop()
@@ -50,12 +50,12 @@ $(function () {
         //开启定时器
         var timerId=setInterval(function () {
             index++
-            console.log('aaaa')
+            //console.log('aaaa')
             autoMove()
         },1000)
         //手指滑动事件
         $('#loop-pic').on('swipeLeft', function (e) {
-            console.log(e)
+            //console.log(e)
             e.preventDefault();
             clearInterval(timerId)
             timerId=undefined
@@ -94,6 +94,24 @@ $(function () {
             }
             top.style.backgroundColor='rgba(0,0,0,'+percent+')'
         }
+    }
+    $.getJSON('./info/mobile_1.json', function (data) {
+        console.log(data)
+    })
+    var navs=document.querySelectorAll('.pic>div')
+    for(var i=0;i<navs.length;i++){
+        navs[i].onclick= function () {
+            for(var j=0;j<navs.length;j++){
+            }
+            //console.log(navs.length)
+            console.log($(this).index())
+            changeTab($(this).index()+1)//.index()天坑啊,如果是选择器是返回相对兄弟元素的位置,如果是dom元素集合是返回第一个位置.....
+        }
+    }
+    var changeTab= function (n) {
+        $.getJSON('./info/mobile_'+n+'.json', function (data) {
+            console.log(data)
+        })
     }
 
 

@@ -110,8 +110,8 @@ body,html{
 .main>.pic>div:nth-of-type(2){background-color: forestgreen}
 .main>.pic>div:nth-of-type(3){background-color: cornflowerblue}
 .main>.pic>div:nth-of-type(4){background-color: orangered}
-.main>.pic>div:nth-of-type(5){background-color: gold}
-.main>.pic>div:nth-of-type(6){background-color: chartreuse}
+.main>.pic>div:nth-of-type(5){background-color: goldenrod}
+.main>.pic>div:nth-of-type(6){background-color: seagreen}
 .main>.pic>div:nth-of-type(7){background-color: darkorange}
 .main>.pic>div:nth-of-type(8){background-color: indigo}
 .main>.pic>div>a{
