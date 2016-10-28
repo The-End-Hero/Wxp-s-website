@@ -96,7 +96,9 @@ $(function () {
         }
     }
     $.getJSON('./info/mobile_1.json', function (data) {
-        console.log(data)
+        console.log(data[0].ifm)
+        var str=template('ifm',{list:data})
+        $('.ajax-8').html(str)
     })
     var navs=document.querySelectorAll('.pic>div')
     for(var i=0;i<navs.length;i++){
@@ -105,12 +107,15 @@ $(function () {
             }
             //console.log(navs.length)
             console.log($(this).index())
-            changeTab($(this).index()+1)//.index()天坑啊,如果是选择器是返回相对兄弟元素的位置,如果是dom元素集合是返回第一个位置.....
+            changeTab($(this).index()+1)
+            //.index()天坑啊,如果是选择器是返回相对兄弟元素的位置,如果是dom元素集合是返回第一个元素的位置.....
         }
     }
     var changeTab= function (n) {
         $.getJSON('./info/mobile_'+n+'.json', function (data) {
             console.log(data)
+            var str=template('ifm',{list:data})
+            $('.ajax-8').html(str)
         })
     }
 

@@ -1,0 +1,3 @@
+[{
+  "ifm":"AngularJS是由Google的员工MiškoHevery从2009年开始着手开发.AngularJS的设计初衷是为了克服HTML在构建应用上的不足而设计的.其核心就是通过指令扩展了HTML,通过表达式绑定数据到HTML.Angular不推崇DOM操作，也就是说在Angular中几乎不去使用DOM操作.通常，我们是通过以下技术来解决静态网页技术在构建动态应用上的不足:类库和框架."
+}]

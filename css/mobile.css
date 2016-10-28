@@ -37,7 +37,7 @@ body,html{
 }
 .main{
     width: 10rem;
-    height: 1000px;
+    height: 10rem;
     background-color: black;
 }
 .main>#loop-pic{
@@ -123,4 +123,18 @@ body,html{
     font-size: 0.42rem;
     font-weight: 900;
     line-height: 2.3rem;
+}
+
+
+
+.ajax-8{
+    width: 10rem;
+    height: 5rem;
+    background-color: #434343;
+}
+.ajax-8>p{
+    padding: 0.25rem 0.5rem;
+    color: white;
+    font-size: 0.4rem;
+    font-family: '微软雅黑';
 }
