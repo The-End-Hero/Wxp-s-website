@@ -105,49 +105,89 @@ $(function () {
     //注册事件
     var navs=document.querySelectorAll('.pic>div')
     for(var i=0;i<navs.length;i++){
-        navs[i].onclick= function (e) {
-            //console.log(e)
+
+        $(navs[i]).on('touchend', function (e) {
+            //console.log(e.changedTouches[0])
+            var page_X=e.changedTouches[0].pageX//鼠标所在位置X
+            var page_Y=e.changedTouches[0].pageY//鼠标所在位置Y
+            var offset_left=$(this).offset().left//外盒子在浏览器中的位置
+            var offset_top=$(this).offset().top//外盒子在浏览器中的位置
+
             //水波纹效果
             var span=$('<span class="water"></span>').appendTo($(this))
             $(span).hide()
-console.log($(span).height())
-            if((e.pageX-$(this).offset().left)>0&&(e.pageX-$(this).offset().left)<$(this).width()&&(e.pageY-$(this).offset().top)>0&&(e.pageY-$(this).offset().top)<$(this).height()){
+            //console.log($(span).height())
+            if((page_X-offset_left)>0&&(page_X-offset_left)<$(this).width()&&(page_Y-offset_top)>0&&(page_Y-offset_top)<$(this).height()){
 
                 $(span).css({
-                    left:(e.pageX- $(this).offset().left)-40+'px',
-                    top:(e.pageY- $(this).offset().top)-40+'px',
-                    //transition: 'all 4s',
+                    left:(page_X- offset_left)-40+'px',
+                    top:(page_Y- offset_top)-40+'px',
                 })
-                //$(span).animate({
-                //    //transform:'scale(10)'
-                //    width:'4rem',
-                //    height:'4rem'
-                //},400,'ease')
                 $(span).fadeIn()
                 $(span).addClass('animated zoomIn')
-                $(span).css({
-                    opacity:'0.4'
-                })
+                //$(span).css({
+                //    opacity:'0.4'
+                //})
                 setTimeout(function () {
                     $(span).hide()
                     $(span).remove()
-                    $(span).removeClass('animated zoomIn')
+                    //$(span).removeClass('animated zoomIn')
                 },400)
-                setTimeout(function () {
-                    $(span).remove()
-                },800)
+                //setTimeout(function () {
+                //    $(span).remove()
+                //},800)
             }
-            //for(var j=0;j<navs.length;j++){
-            //}
-            //console.log(navs.length)
-            //console.log($(this).index())
             changeTab($(this).index()+1)
             //.index()天坑啊,如果是选择器是返回相对兄弟元素的位置,如果是dom元素集合是返回第一个元素的位置.....
-        }
+        })
+
+
+//        navs[i].onclick= function (e) {
+//            //console.log(e)
+//            //水波纹效果
+//            var span=$('<span class="water"></span>').appendTo($(this))
+//            $(span).hide()
+//console.log($(span).height())
+//            if((e.pageX-$(this).offset().left)>0&&(e.pageX-$(this).offset().left)<$(this).width()&&(e.pageY-$(this).offset().top)>0&&(e.pageY-$(this).offset().top)<$(this).height()){
+//
+//                $(span).css({
+//                    left:(e.pageX- $(this).offset().left)-40+'px',
+//                    top:(e.pageY- $(this).offset().top)-40+'px',
+//                    //transition: 'all 4s',
+//                })
+//                //$(span).animate({
+//                //    //transform:'scale(10)'
+//                //    width:'4rem',
+//                //    height:'4rem'
+//                //},400,'ease')
+//                $(span).fadeIn()
+//                $(span).addClass('animated zoomIn')
+//                $(span).css({
+//                    opacity:'0.4'
+//                })
+//                setTimeout(function () {
+//                    $(span).hide()
+//                    $(span).remove()
+//                    $(span).removeClass('animated zoomIn')
+//                },400)
+//                setTimeout(function () {
+//                    $(span).remove()
+//                },800)
+//            }
+//            //for(var j=0;j<navs.length;j++){
+//            //}
+//            //console.log(navs.length)
+//            //console.log($(this).index())
+//            changeTab($(this).index()+1)
+//            //.index()天坑啊,如果是选择器是返回相对兄弟元素的位置,如果是dom元素集合是返回第一个元素的位置.....
+//        }
+
+
+
     }
     var changeTab= function (n) {
         $.getJSON('./info/mobile_'+n+'.json', function (data) {
-            console.log(data)
+            //console.log(data)
             var str=template('ifm',{list:data})
             $('.ajax-8').html(str)
         })
