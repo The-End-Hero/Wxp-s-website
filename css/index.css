@@ -1,5 +1,6 @@
 html,body{
     min-width: 1300px;
+    height: 100%;
 }
 .introduce{
     display: none;
@@ -87,7 +88,7 @@ html,body{
     height: 180px;
     background: url("../images/1476632336.png");
     background-size: 100% 100%;
-    z-index: 1;
+    z-index: 3;
     background-color: rgba(255,255,255,1);
 }
 .introduce>.up{
@@ -125,6 +126,43 @@ html,body{
     transition: all .3s;
     cursor: pointer;
 }
+.left{
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    line-height: 30px;
+    position: fixed;
+    width:30px;
+    height: 30px;
+    z-index: 1;
+    box-shadow: 0px 0px 1px 1px gray;
+    background-color: black;
+    top: 45px;
+    right: 0px;
+    border-radius: 0px 0px 10px 10px;
+    transition: all .3s;
+    cursor: pointer;
+    transform: rotate(90deg);
+}
+.spa_right{
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    line-height: 30px;
+    position: absolute;
+    top: 100%;
+    margin-top: -85px;
+    left: 0px;
+    width: 30px;
+    height: 30px;
+    box-shadow: 0px 0px 1px 1px gray;
+    border-radius: 10px 10px 0px 0px ;
+    background-color: black;
+    /*opacity: 0;*/
+    transition: all .3s;
+    cursor: pointer;
+    transform: rotate(90deg);
+}
 .yellow{
     color: red;
     text-shadow: 0 0 3px,0 0 10px;
@@ -135,10 +173,11 @@ html,body{
     top:0px;
     left: 0px;
     background-color: black;
-    opacity: 0.9;
+    opacity: 0.8;
     width: 100%;
     height: 40px;
-    z-index: 1;
+    z-index: 3;
+    /*border-bottom: 1px solid grey;*/
 }
 .top>.person{
     display: inline-block;
@@ -298,4 +337,53 @@ html,body{
     z-index: 1;
     background-color: #333333;
     opacity:0.6 ;
+}
+
+
+
+/*spa*/
+#spa{
+    position: fixed;
+    right: 0px;
+    z-index: 2;
+    height: 100%;
+    width: 0px;
+    background-color: white;
+    display: none;
+    /*padding: 1px;*/
+}
+#spa>.spa_bottom{
+    position: fixed;
+    top: 40px;
+    z-index: 2;
+    height: 5px;
+    width: 0;
+    background-color: #cb0a56;
+    display: none;
+}
+#spa>.spa_left{
+    position: fixed;
+    top: 45px;
+    width: 25%;
+    height: 0;
+    z-index: 5;
+    background-color: black;
+    display: none;
+}
+#spa>.spa_left>.item{
+    display: block;
+    font-family: '微软雅黑','courier';
+    font-size: 18px;
+    line-height: 40px;
+    color: white;
+    padding-left: 15px;
+    transition: all .2s;
+    -webkit-transition: all .2s;
+}
+#spa>.spa_left>.item:hover{
+    background-color: deeppink;
+    opacity: .7;
+}
+#spa>.spa_left>.item.t{
+    margin-top: 20px;
 }
