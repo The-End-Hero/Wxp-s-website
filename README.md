@@ -16,3 +16,5 @@
 - 手淘flexible
 - 移动端rem布局
 - json对象
+- echarts数据可视化
+- angularJS
