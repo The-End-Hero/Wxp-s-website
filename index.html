@@ -40,13 +40,16 @@
     </ul>
     <div class='up iconfont'>&#xe600;</div>
 </div>
-<div id='spa' ng-app=''ng-module=''>
+<div id='spa' ng-app='myApp'ng-controller='myCtrl'>
     <div class='spa_bottom'></div>
     <div class='spa_left'>
-        <a class='item t' href="#/top250">豆瓣TOP250</a>
+        <a id='weather_charts'class='item t' href="#">您所在城市最近的天气情况</a>
+        <a class='item' href="#/top250">豆瓣TOP250</a>
         <a class='item' href="#">jQuery插件</a>
-        <!--<a href="#"></a>-->
         <div class='spa_right iconfont'>&#xe600;</div>
+    </div>
+    <div id='main'style="width: 65%;height:70%;">
+
     </div>
 </div>
 <div class='erwei'></div>
@@ -58,7 +61,8 @@
             class='tel iconfont'>&#xe605;</span>手机版</a>
     <div class='weather'>
         <script id='weather' type=text/html>
-            <p class='p'>您所在的城市:<%=list.results[0].currentCity%></p>
+            <p class='p'>
+                您所在的城市:<%=list.results[0].currentCity%></p>
             <span class='span'>
                     <%=list.results[0].weather_data[0].date%>
                     <%=list.results[0].weather_data[0].weather%> </br>
@@ -81,6 +85,7 @@
 <div class='bottom'><a href="http://www.beian.gov.cn">苏ICP备16050141号</a></div>
 
 <script src='js/canvas-spin.js'></script>
-<script src='js/angular-1.5.8/angular.js'></script>
+<script src='js/angular-1.5.8/angular.min.js'></script>
+<script src='js/echarts.min.js'></script>
 </body>
 </html>

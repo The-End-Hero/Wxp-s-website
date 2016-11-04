@@ -60,6 +60,16 @@ $(function () {
                             data: ['最高温度', '最低温度'],
 //					backgroundColor:'rgba(0,0,0,.4)'
                         },
+                        toolbox: {
+                            show: true,
+                            feature: {
+                                mark: {show: true},
+                                dataView: {show: true, readOnly: false},
+                                magicType: {show: true, type: ['line','bar']},
+                                restore: {show: true},
+                                saveAsImage: {show: true}
+                            }
+                        },
                         xAxis: {       //直角坐标系 grid 中的 x 轴
                             type: 'category',
                             boundaryGap: false,
@@ -77,7 +87,7 @@ $(function () {
 //				}]
                         grid: {
                             left: '10%',
-                            right: '4%',
+                            right: '10%',
                             bottom: '3%',
                             containLabel: true
                         },
@@ -87,13 +97,19 @@ $(function () {
                                 type: 'line',
 //						stack: '最高',
 //						symbol:'pin',
-                                data: [wendu0, wendu1, wendu2, wendu3]
+                                data: [wendu0, wendu1, wendu2, wendu3],
+                                markLine: {
+                                    data: [{type: 'average', name: '平均值'}]
+                                }
                             },
                             {
                                 name: '最低温度',
                                 type: 'line',
 //						stack: '最低',
-                                data: [wendu4, wendu5, wendu6, wendu7]
+                                data: [wendu4, wendu5, wendu6, wendu7],
+                                markLine: {
+                                    data: [{type: 'average', name: '平均值'}]
+                                }
                             },
                         ],
 //				backgroundColor:'rgba(0,0,228,.5)'

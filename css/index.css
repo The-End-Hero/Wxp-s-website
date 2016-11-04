@@ -173,7 +173,7 @@ html,body{
     top:0px;
     left: 0px;
     background-color: black;
-    opacity: 0.8;
+    opacity: 0.9;
     width: 100%;
     height: 40px;
     z-index: 3;
@@ -386,4 +386,14 @@ html,body{
 }
 #spa>.spa_left>.item.t{
     margin-top: 20px;
+}
+#main{
+    /*background-color: #990000;*/
+    /*width: 700px;*/
+    /*height: 500px;*/
+    position: absolute;
+    top: 14%;
+    right:5%;
+    /*right: 0px;*/
+    /*margin: auto;*/
 }
