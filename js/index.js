@@ -25,10 +25,10 @@ $(function () {
                 $('#weather_charts').on('click', function () {
                     var weatherResults = data.results[0];
                     console.log(weatherResults)
-                    var data0 = weatherResults.weather_data[0].date
-                    var data1 = weatherResults.weather_data[1].date
-                    var data2 = weatherResults.weather_data[2].date
-                    var data3 = weatherResults.weather_data[3].date
+                    var data0 = weatherResults.weather_data[0].date+'('+weatherResults.weather_data[0].weather+')'
+                    var data1 = weatherResults.weather_data[1].date+'('+weatherResults.weather_data[1].weather+')'
+                    var data2 = weatherResults.weather_data[2].date+'('+weatherResults.weather_data[2].weather+')'
+                    var data3 = weatherResults.weather_data[3].date+'('+weatherResults.weather_data[3].weather+')'
                     console.log(data0)
                     console.log(data1)
                     console.log(data2)
@@ -60,6 +60,8 @@ $(function () {
                             data: ['最高温度', '最低温度'],
 //					backgroundColor:'rgba(0,0,0,.4)'
                         },
+                        //折线颜色
+                        color:['deeppink','skyblue'],
                         toolbox: {
                             show: true,
                             feature: {
