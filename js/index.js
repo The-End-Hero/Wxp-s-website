@@ -172,44 +172,35 @@ $(function () {
     })
     //.left拉出效果
     $('.left').on('click', function () {
-        $('#spa').show()
-        $('#spa').animate({
-            width:'100%'
-        },1000, function () {
-            $('#spa>.spa_bottom').show()
-            $('#spa>.spa_bottom').animate({
-                width:'100%'
-            },1000, function () {
-                //console.log($('#spa>.spa_bottom').width())
-                //spa_left
-                if($('#spa>.spa_bottom').width()==$('body').width()){
-                    //console.log('asd')
-                    $('#spa>.spa_left').show()
-                    $('#spa>.spa_left').animate({
-                        height:'100%'
-                    })
-                }
-            })
-
+        $('#spa').css({
+            transform:'translateX(0)'
         })
+        setTimeout(function () {
+            $('#spa>.spa_bottom').css({
+                transform:'translateX(0)'
+            })
+        },1000)
+        setTimeout(function () {
+            $('#spa>.spa_left').css({
+                transform:'translateY(0)'
+            })
+        },2000)
     })
     //spa_right效果
     $('.spa_right').on('click', function () {
-        $('#spa>.spa_left').animate({
-            height:'0'
-        }, function () {
-            $('#spa>.spa_bottom').animate({
-                width:'0'
-            }, function () {
-                $('#spa').animate({
-                    width:'0'
-                }, function () {
-                    $('#spa>.spa_left').hide()
-                    $('#spa>.spa_bottom').hide()
-                    $('#spa').hide()
-                })
-            })
+        $('#spa>.spa_left').css({
+            transform:'translateY(-110%)'
         })
+        setTimeout(function () {
+            $('#spa>.spa_bottom').css({
+                transform:'translateX(-200%)'
+            })
+        },1000)
+        setTimeout(function () {
+            $('#spa').css({
+                transform:'translateX(100%)'
+            })
+        },2000)
     })
 
     //个人简介手风琴效果

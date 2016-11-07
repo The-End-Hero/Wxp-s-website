@@ -589,9 +589,11 @@ html,body{
     right: 0px;
     z-index: 2;
     height: 100%;
-    width: 0px;
+    width: 100%;
     background-color: white;
-    display: none;
+    transform: translateX(100%);
+    transition: all 1s;
+    /*display: none;*/
     /*padding: 1px;*/
 }
 #spa>.spa_bottom{
@@ -599,20 +601,23 @@ html,body{
     top: 40px;
     z-index: 2;
     height: 5px;
-    width: 0;
+    width: 100%;
     background-color: #cb0a56;
-    display: none;
+    transform: translateX(-200%);
+    transition: all 1s;
+    /*display: none;*/
 }
 #spa>.spa_left{
     position: fixed;
-    /*top: 45px;*/
+    top: 45px;
     width: 30%;
-    /*left: 0px;*/
-    right: 70%;
-    height: 0;
+    left: 0px;
+    height: 100%;
     z-index: 5;
     background-color: black;
-    display: none;
+    transform: translateY(-110%);
+    transition: all 1s;
+    /*display: none;*/
 }
 #spa>.spa_left>.item{
     display: block;
