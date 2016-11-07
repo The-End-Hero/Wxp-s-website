@@ -1,4 +1,7 @@
 $(function () {
+    $('.main').css({
+        height:''+window.screen.height
+    })
     //动态获取城市和天气
     jQuery.getScript("http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js", function () {
         province = remote_ip_info["province"];
