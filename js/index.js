@@ -1,6 +1,3 @@
-/**
- * Created by VTEC on 2016/10/14.
- */
 $(function () {
     //动态获取城市和天气
     jQuery.getScript("http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js", function () {
@@ -81,12 +78,6 @@ $(function () {
                             type: 'value',
                             name: '℃'
                         },
-//				yAxis: {},
-//				series: [{
-//					name: '销量',
-//					type: 'bar',
-//					data: [5, 20, 36, 10, 10, 20]
-//				}]
                         grid: {
                             left: '10%',
                             right: '10%',
@@ -97,8 +88,6 @@ $(function () {
                             {
                                 name: '最高温度',
                                 type: 'line',
-//						stack: '最高',
-//						symbol:'pin',
                                 data: [wendu0, wendu1, wendu2, wendu3],
                                 markLine: {
                                     data: [{type: 'average', name: '平均值'}]
@@ -107,7 +96,6 @@ $(function () {
                             {
                                 name: '最低温度',
                                 type: 'line',
-//						stack: '最低',
                                 data: [wendu4, wendu5, wendu6, wendu7],
                                 markLine: {
                                     data: [{type: 'average', name: '平均值'}]
@@ -245,4 +233,134 @@ $(function () {
             }
         }
     }
+    $('.denglu_b').on('click', function () {
+        $('.denglu').css({
+            display:'block'
+        })
+    })
+    $('.zhuce_b').on('click', function () {
+        $('.zhuce').css({
+            display:'block'
+        })
+    })
+})
+//登陆
+$(function () {
+    var disable0=false
+    var disable1=false
+    $('#denglu').attr("disabled",true);
+    $('#yonghu').on('blur', function () {
+        var exp=/^([A-Za-z0-9\u4e00-\u9fa5]{2,18})+$/g
+//            console.log($(this).val())
+        var str=$(this).val()
+        var exp=exp.test(str)
+//            console.log(exp)
+//            Object.prototype.toString(exp.test(str))
+        if(exp){
+            console.log('用户名格式正确')
+            disable0=true
+            if(disable0==true&&disable1==true){
+                $('#denglu').attr("disabled",false);
+                alert('写数据库')
+            }
+        }else {
+            console.log('用户名格式错误')
+            disable0=false
+        }
+    })
+    $('#pwd').on('blur', function () {
+        var exp=/\w{8,16}/
+        var str=$(this).val()
+        var exp=exp.test(str)
+//            Object.prototype.toString(exp.test(str))
+        if(exp){
+            console.log('密码格式正确')
+            disable1=true
+            if(disable0==true&&disable1==true){
+                $('#denglu').attr("disabled",false);
+                alert('写数据库')
+            }
+        }else {
+            console.log('密码格式错误')
+            disable1=false
+        }
+    })
+    $('#denglu').on('click',function () {
+        $.post('denglu.php',{name:$('#yonghu').val(),pwd:$('#pwd').val()}, function (data) {
+            console.log(data)
+            if(data!='用户名或密码不正确'){
+
+            }
+        })
+    })
+})
+//注册
+$(function () {
+//        $.get('lianjiemysql.php', function (data) {
+//            var a=JSON.parse(data)
+//            console.log(a)
+//        })
+    $('#zhuce').attr("disabled",true);
+    var disable0=false
+    var disable1=false
+    var disable2=false
+    $('#yonghu').on('blur', function () {
+        var exp=/^([A-Za-z0-9\u4e00-\u9fa5]{2,18})+$/g
+//            console.log($(this).val())
+        var str=$(this).val()
+        var exp=exp.test(str)
+//            console.log(exp)
+//            Object.prototype.toString(exp.test(str))
+        if(exp){
+            console.log('用户名格式正确')
+            $.get('yanzheng.php',{name:$(this).val()+''},function(data){
+                console.log(data)
+                disable0=true
+                if(disable0==true&&disable1==true&&disable2==true&&data=='用户名可用'){
+                    $('#zhuce').attr("disabled",false);
+                    alert('写数据库')
+                }
+            })
+        }else {
+            console.log('用户名格式错误')
+            disable0=false
+        }
+    })
+    $('#pwd').on('blur', function () {
+        var exp=/\w{8,16}/
+        var str=$(this).val()
+        var exp=exp.test(str)
+//            Object.prototype.toString(exp.test(str))
+        if(exp){
+            console.log('密码格式正确')
+            disable1=true
+            if(disable0==true&&disable1==true&&disable2==true){
+                $('#zhuce').attr("disabled",false);
+                alert('写数据库')
+            }
+        }else {
+            console.log('密码格式错误')
+            disable1=false
+        }
+    })
+    $('#repwd').on('blur', function () {
+//            var exp=//
+        var repwd=$('#repwd').val()
+        var pwd=$('#pwd').val()
+        if(repwd===pwd){
+            console.log('密码重复正确')
+            disable2=true
+            if(disable0==true&&disable1==true&&disable2==true){
+                alert('写数据库')
+                $('#zhuce').attr("disabled",false);
+            }
+        }else {
+            console.log('密码重复有误')
+            disable2=false
+        }
+    })
+    $('#zhuce').on('click', function () {
+        $.post('zhuce.php',{name:$('#yonghu').val(),pwd:$('#pwd').val()}, function () {
+        })
+    })
 })
