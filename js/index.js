@@ -1,7 +1,14 @@
 $(function () {
     $('.main').css({
-        height:''+window.screen.height
+        height: '' + window.screen.height,
+        //width:''+window.screen.width
     })
+
+    //main切换背景图片
+    var timer_bg = setInterval(function () {
+        $('.main').toggleClass('fix')
+    }, 2000)
+
     //动态获取城市和天气
     jQuery.getScript("http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js", function () {
         province = remote_ip_info["province"];
@@ -25,10 +32,10 @@ $(function () {
                 $('#weather_charts').on('click', function () {
                     var weatherResults = data.results[0];
                     console.log(weatherResults)
-                    var data0 = weatherResults.weather_data[0].date+'('+weatherResults.weather_data[0].weather+')'
-                    var data1 = weatherResults.weather_data[1].date+'('+weatherResults.weather_data[1].weather+')'
-                    var data2 = weatherResults.weather_data[2].date+'('+weatherResults.weather_data[2].weather+')'
-                    var data3 = weatherResults.weather_data[3].date+'('+weatherResults.weather_data[3].weather+')'
+                    var data0 = weatherResults.weather_data[0].date + '(' + weatherResults.weather_data[0].weather + ')'
+                    var data1 = weatherResults.weather_data[1].date + '(' + weatherResults.weather_data[1].weather + ')'
+                    var data2 = weatherResults.weather_data[2].date + '(' + weatherResults.weather_data[2].weather + ')'
+                    var data3 = weatherResults.weather_data[3].date + '(' + weatherResults.weather_data[3].weather + ')'
                     console.log(data0)
                     console.log(data1)
                     console.log(data2)
@@ -51,7 +58,7 @@ $(function () {
                     console.log(wendu7)
                     var option = {
                         title: {
-                            text: city+'最近天气'
+                            text: city + '最近天气'
                         },
                         tooltip: {
                             trigger: 'axis'
@@ -61,13 +68,13 @@ $(function () {
 //					backgroundColor:'rgba(0,0,0,.4)'
                         },
                         //折线颜色
-                        color:['deeppink','skyblue'],
+                        color: ['deeppink', 'skyblue'],
                         toolbox: {
                             show: true,
                             feature: {
                                 mark: {show: true},
                                 dataView: {show: true, readOnly: false},
-                                magicType: {show: true, type: ['line','bar']},
+                                magicType: {show: true, type: ['line', 'bar']},
                                 restore: {show: true},
                                 saveAsImage: {show: true}
                             }
@@ -105,15 +112,14 @@ $(function () {
                                 }
                             },
                         ],
-//				backgroundColor:'rgba(0,0,228,.5)'
                     };
                     var myChart = echarts.init(document.getElementById('main'));
                     myChart.setOption(option);
                 })
-
             }
         })
     });
+
     //头像
     $('.me').on('mouseenter', function () {
         $('.me span').css({
@@ -125,6 +131,7 @@ $(function () {
             left: '-100%'
         })
     })
+
     //闪光灯效果
     var time_down = setInterval(function () {
         autoPlay($('.down'))
@@ -132,9 +139,10 @@ $(function () {
     var time_h = setInterval(function () {
         autoPlay($('.top>h4'))
     }, 800)
-    var time_left=setInterval(function () {
+    var time_left = setInterval(function () {
         autoPlay($('.left'))
-    },1000)
+    }, 1000)
+
     function autoPlay(Obj) {
         Obj.toggleClass('yellow')
     }
@@ -173,37 +181,39 @@ $(function () {
             })
         });
     })
+
     //.left拉出效果
     $('.left').on('click', function () {
         $('#spa').css({
-            transform:'translateX(0)'
+            transform: 'translateX(0)'
         })
         setTimeout(function () {
             $('#spa>.spa_bottom').css({
-                transform:'translateX(0)'
+                transform: 'translateX(0)'
             })
-        },1000)
+        }, 1000)
         setTimeout(function () {
             $('#spa>.spa_left').css({
-                transform:'translateY(0)'
+                transform: 'translateY(0)'
             })
-        },2000)
+        }, 2000)
     })
+
     //spa_right效果
     $('.spa_right').on('click', function () {
         $('#spa>.spa_left').css({
-            transform:'translateY(-110%)'
+            transform: 'translateY(-110%)'
         })
         setTimeout(function () {
             $('#spa>.spa_bottom').css({
-                transform:'translateX(-200%)'
+                transform: 'translateX(-200%)'
             })
-        },1000)
+        }, 1000)
         setTimeout(function () {
             $('#spa').css({
-                transform:'translateX(100%)'
+                transform: 'translateX(100%)'
             })
-        },2000)
+        }, 2000)
     })
 
     //个人简介手风琴效果
@@ -227,134 +237,148 @@ $(function () {
             }
         }
     }
+
+    //登陆注册按钮
     $('.denglu_b').on('click', function () {
         $('.denglu').css({
-            display:'block'
+            transform: 'translateY(0)'
         })
     })
     $('.zhuce_b').on('click', function () {
         $('.zhuce').css({
-            display:'block'
+            transform: 'translateY(0)'
+        })
+    })
+    $('.zhuce_close').on('click', function () {
+        $('.zhuce').css({
+            transform:'translateY(-200%)'
+        })
+    })
+    $('.denglu_close').on('click', function () {
+        $('.denglu').css({
+            transform:'translateY(-200%)'
         })
     })
 })
+
 //登陆
 $(function () {
-    var disable0=false
-    var disable1=false
-    $('#denglu').attr("disabled",true);
-    $('#yonghu').on('blur', function () {
-        var exp=/^([A-Za-z0-9\u4e00-\u9fa5]{2,18})+$/g
-//            console.log($(this).val())
-        var str=$(this).val()
-        var exp=exp.test(str)
-//            console.log(exp)
-//            Object.prototype.toString(exp.test(str))
-        if(exp){
+    var disable0 = false
+    var disable1 = false
+    $('#denglu').attr("disabled", true);
+    $('#yonghu_d').on('blur', function () {
+        var exp = /^([A-Za-z0-9\u4e00-\u9fa5]{2,18})+$/g
+        var str = $(this).val()
+        var exp = exp.test(str)
+        if (exp) {
             console.log('用户名格式正确')
-            disable0=true
-            if(disable0==true&&disable1==true){
-                $('#denglu').attr("disabled",false);
-                alert('写数据库')
+            disable0 = true
+            if (disable0 == true && disable1 == true) {
+                $('#denglu').attr("disabled", false);
+                //alert('写数据库')
             }
-        }else {
+        } else {
             console.log('用户名格式错误')
-            disable0=false
+            disable0 = false
         }
     })
-    $('#pwd').on('blur', function () {
-        var exp=/\w{8,16}/
-        var str=$(this).val()
-        var exp=exp.test(str)
+    $('#pwd_d').on('blur', function () {
+        var exp = /\w{8,16}/
+        var str = $(this).val()
+        var exp = exp.test(str)
 //            Object.prototype.toString(exp.test(str))
-        if(exp){
+        if (exp) {
             console.log('密码格式正确')
-            disable1=true
-            if(disable0==true&&disable1==true){
-                $('#denglu').attr("disabled",false);
-                alert('写数据库')
+            disable1 = true
+            if (disable0 == true && disable1 == true) {
+                $('#denglu').attr("disabled", false);
+                //alert('写数据库')
             }
-        }else {
+        } else {
             console.log('密码格式错误')
-            disable1=false
+            disable1 = false
         }
     })
-    $('#denglu').on('click',function () {
-        $.post('denglu.php',{name:$('#yonghu').val(),pwd:$('#pwd').val()}, function (data) {
+    $('#denglu').on('click', function () {
+        $.post('denglu.php', {name: $('#yonghu_d').val(), pwd: $('#pwd_d').val()}, function (data) {
             console.log(data)
-            if(data!='用户名或密码不正确'){
+            if (data != '用户名或密码不正确') {
 
             }
         })
     })
 })
+
 //注册
 $(function () {
 //        $.get('lianjiemysql.php', function (data) {
 //            var a=JSON.parse(data)
 //            console.log(a)
 //        })
-    $('#zhuce').attr("disabled",true);
-    var disable0=false
-    var disable1=false
-    var disable2=false
-    $('#yonghu').on('blur', function () {
-        var exp=/^([A-Za-z0-9\u4e00-\u9fa5]{2,18})+$/g
+    $('#zhuce').attr("disabled", true);
+    var disable0 = false
+    var disable1 = false
+    var disable2 = false
+    $('#yonghu_z').on('blur', function () {
+        var exp = /^([A-Za-z0-9\u4e00-\u9fa5]{2,18})+$/g
 //            console.log($(this).val())
-        var str=$(this).val()
-        var exp=exp.test(str)
+        var str = $(this).val()
+        var exp = exp.test(str)
 //            console.log(exp)
 //            Object.prototype.toString(exp.test(str))
-        if(exp){
+        if (exp) {
             console.log('用户名格式正确')
-            $.get('yanzheng.php',{name:$(this).val()+''},function(data){
+            $.get('yanzheng.php', {name: $(this).val() + ''}, function (data) {
                 console.log(data)
-                disable0=true
-                if(disable0==true&&disable1==true&&disable2==true&&data=='用户名可用'){
-                    $('#zhuce').attr("disabled",false);
-                    alert('写数据库')
+                disable0 = true
+                if (disable0 == true && disable1 == true && disable2 == true && data == '用户名可用') {
+                    $('#zhuce').attr("disabled", false);
+                    //alert('写数据库')
                 }
             })
-        }else {
+        } else {
             console.log('用户名格式错误')
-            disable0=false
+            disable0 = false
         }
     })
-    $('#pwd').on('blur', function () {
-        var exp=/\w{8,16}/
-        var str=$(this).val()
-        var exp=exp.test(str)
+
+    $('#pwd_z').on('blur', function () {
+        var exp = /\w{8,16}/
+        var str = $(this).val()
+        var exp = exp.test(str)
 //            Object.prototype.toString(exp.test(str))
-        if(exp){
+        if (exp) {
             console.log('密码格式正确')
-            disable1=true
-            if(disable0==true&&disable1==true&&disable2==true){
-                $('#zhuce').attr("disabled",false);
-                alert('写数据库')
+            disable1 = true
+            if (disable0 == true && disable1 == true && disable2 == true) {
+                $('#zhuce').attr("disabled", false);
+                //alert('写数据库')
             }
-        }else {
+        } else {
             console.log('密码格式错误')
-            disable1=false
+            disable1 = false
         }
     })
+
     $('#repwd').on('blur', function () {
 //            var exp=//
-        var repwd=$('#repwd').val()
-        var pwd=$('#pwd').val()
-        if(repwd===pwd){
+        var repwd = $('#repwd').val()
+        var pwd = $('#pwd_z').val()
+        if (repwd === pwd) {
             console.log('密码重复正确')
-            disable2=true
-            if(disable0==true&&disable1==true&&disable2==true){
-                alert('写数据库')
-                $('#zhuce').attr("disabled",false);
+            disable2 = true
+            if (disable0 == true && disable1 == true && disable2 == true) {
+                //alert('写数据库')
+                $('#zhuce').attr("disabled", false);
             }
-        }else {
+        } else {
             console.log('密码重复有误')
-            disable2=false
+            disable2 = false
         }
     })
+
     $('#zhuce').on('click', function () {
-        $.post('zhuce.php',{name:$('#yonghu').val(),pwd:$('#pwd').val()}, function () {
+        $.post('zhuce.php', {name: $('#yonghu_z').val(), pwd: $('#pwd_z').val()}, function () {
         })
     })
 })

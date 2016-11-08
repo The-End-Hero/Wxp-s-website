@@ -139,7 +139,7 @@ $(function () {
 
             //水波纹效果
             var span = $('<span class="water"></span>').appendTo($(this))
-            $(span).hide()
+            //$(span).hide()
             //console.log($(span).height())
             if ((page_X - offset_left) > 0 && (page_X - offset_left) < $(this).width() && (page_Y - offset_top) > 0 && (page_Y - offset_top) < $(this).height()) {
 
@@ -147,13 +147,13 @@ $(function () {
                     left: (page_X - offset_left) - 40 + 'px',
                     top: (page_Y - offset_top) - 40 + 'px',
                 })
-                $(span).fadeIn()
+                //$(span).fadeIn()
                 $(span).addClass('animated zoomIn')
                 //$(span).css({
                 //    opacity:'0.4'
                 //})
                 setTimeout(function () {
-                    $(span).hide()
+                    //$(span).hide()
                     $(span).remove()
                     //$(span).removeClass('animated zoomIn')
                 }, 400)
