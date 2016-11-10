@@ -246,26 +246,24 @@ $(function () {
         }
     }
 
-    //spa侧边栏
+    //spa侧边栏色块 变大 变小 效果
     $('#point').css({
         top:$('.spa_a')[0].offsetTop+'px'
     })
     $('.item').on('mouseenter', function () {
-        console.log($('#point').height())
         var start=$(this)[0].offsetTop
         $('#point').show()
         $('#point').animate({
             top:start+'px'
         },'fast')
+        $('#point').removeClass('animated zoomOut')
         $('#point').addClass('animated zoomIn')
-        //$('#point').animate({
-        //    top:start+'px'
-        //})
+
     })
     $('.spa_a').on('mouseleave', function () {
         var top=$('#point')[0].offsetTop+$('.item').height()/2-1
         $('#point').removeClass('animated zoomIn')
-        $('#point').hide()
+        $('#point').addClass('animated zoomOut')
     })
 
     //登陆注册按钮

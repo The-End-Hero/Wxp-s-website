@@ -103,6 +103,8 @@ $(function () {
     //    //deltaY = endPosition.y - startPosition.y;
     //    //moveLength = Math.sqrt(Math.pow(Math.abs(deltaX), 2) + Math.pow(Math.abs(deltaY), 2));
     //}
+
+    //轮播图(带吸附效果)
     function loop() {
         var loopUl = $('#loopUl')
         //轮播图索引的ul
@@ -141,7 +143,7 @@ $(function () {
                     timerId = setInterval(function () {
                         index++;
                         autoMove()
-                    }, 1000)
+                    }, 2000)
                 }
             })
         }
@@ -150,7 +152,7 @@ $(function () {
             index++
             //console.log('aaaa')
             autoMove()
-        }, 1000)
+        }, 2000)
 
         //touch事件
         var startX
@@ -158,25 +160,21 @@ $(function () {
         $('#loop-pic').on('touchstart', function (e) {
             e.preventDefault();
             var touch = e.touches[0];
-            startX= e.touches[0].clientX
+            startX= touch.clientX
             //console.log(startX)
             clearInterval(timerId)
             timerId=undefined
-            //return {
-            //    startPosition:touch.pageX,
-            //
-            //}
 
         })
         $('#loop-pic')[0].addEventListener('touchmove', function (e) {
             e.preventDefault();
             var touch = e.touches[0];
-            moveX = e.touches[0].clientX - startX;
+            moveX =touch.clientX - startX;
             //console.log(moveX)
             //clearInterval(timerId)
             //timerId=undefined
-            console.log(index * -loopWidth)
-            console.log(index * -loopWidth+moveX)
+            //console.log(index * -loopWidth)
+            //console.log(index * -loopWidth+moveX)
             var follow=index * -loopWidth+moveX
             loopUl.css({
                 'transform': 'translateX(' + follow + 'px)',
@@ -213,7 +211,7 @@ $(function () {
 
 
     }
-
+    //顶部滚动改变透明度
     top()
     function top() {
         var top = document.querySelector('.top')
@@ -246,30 +244,24 @@ $(function () {
             var page_Y = e.changedTouches[0].pageY//鼠标所在位置Y
             var offset_left = $(this).offset().left//外盒子在浏览器中的位置
             var offset_top = $(this).offset().top//外盒子在浏览器中的位置
-
             //水波纹效果
+            $('.water').remove()//生成span前,移除所有span,防止bug出现
             var span = $('<span class="water"></span>').appendTo($(this))
-            //$(span).hide()
-            //console.log($(span).height())
+
             if ((page_X - offset_left) > 0 && (page_X - offset_left) < $(this).width() && (page_Y - offset_top) > 0 && (page_Y - offset_top) < $(this).height()) {
 
                 $(span).css({
                     left: (page_X - offset_left) - 40 + 'px',
                     top: (page_Y - offset_top) - 40 + 'px',
                 })
-                //$(span).fadeIn()
                 $(span).addClass('animated zoomIn')
-                //$(span).css({
-                //    opacity:'0.4'
-                //})
                 setTimeout(function () {
-                    //$(span).hide()
+                    $(span).removeClass('animated zoomIn')
+                    $(span).addClass('animated zoomOut')
+                }, 200)
+                setTimeout(function () {
                     $(span).remove()
-                    //$(span).removeClass('animated zoomIn')
-                }, 400)
-                //setTimeout(function () {
-                //    $(span).remove()
-                //},800)
+                },400)
             }
             changeTab($(this).index() + 1)
             //.index()天坑啊,如果是选择器是返回相对兄弟元素的位置,如果是dom元素集合是返回第一个元素的位置.....

@@ -161,8 +161,8 @@ span.water{
 }
 /*animate.css动画*/
 .animated {
-    -webkit-animation-duration: 0.4s;
-    animation-duration: 0.4s;
+    -webkit-animation-duration: 0.2s;
+    animation-duration: 0.2s;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
 }
@@ -217,17 +217,54 @@ span.water{
     -webkit-animation-name: zoomIn;
     animation-name: zoomIn;
 }
+@-webkit-keyframes zoomOut {
+    from {
+        opacity: .4;
+    }
 
+    50% {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        transform: scale3d(.3, .3, .3);
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes zoomOut {
+    from {
+        opacity: .4;
+    }
+
+    50% {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        transform: scale3d(.3, .3, .3);
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+.zoomOut {
+    -webkit-animation-name: zoomOut;
+    animation-name: zoomOut;
+}
 /*bottom*/
 .bottom{
     width: 10rem;
-    height: 2rem;
+    height: 1rem;
     background-color: black;
+    text-align: center;
 }
 .bottom>a{
     color: grey;
+    /*width: 100%;*/
     font-family: '微软雅黑';
-    font-size: 1.5rem;
-    line-height: 2rem;
+    font-size: 12px;
+    line-height: 1rem;
     text-align: center;
 }
