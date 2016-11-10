@@ -3,122 +3,130 @@ $(function () {
         height: '' + window.screen.height,
         //width:''+window.screen.width
     })
-
     //main切换背景图片
     var timer_bg = setInterval(function () {
         $('.main').toggleClass('fix')
-    }, 2000)
-
-    //动态获取城市和天气
-    jQuery.getScript("http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js", function () {
-        province = remote_ip_info["province"];
-        city = remote_ip_info["city"];
-        $.ajax({
-            url: "http://api.map.baidu.com/telematics/v3/weather?location=" + city + "&output=json&ak=KawiLiQFG552sBQnCWNtv9iluXqrUY12",
-            dataType: 'jsonP',
-            success: function (data) {
-                // 读取对象
-                console.log(data)
-                var str_weather = template('weather', {list: data})
-                $('.weather').html(str_weather)
-                //jsonp事件
-                $('.weather span').hide()
-                $('.weather p').on('mouseenter', function () {
-                    $('.weather span').stop(true, true).show(500)
-                })
-                $('.weather p').on('mouseleave', function () {
-                    $('.weather span').stop(true, true).hide(500)
-                })
-                $('#weather_charts').on('click', function () {
-                    var weatherResults = data.results[0];
-                    console.log(weatherResults)
-                    var data0 = weatherResults.weather_data[0].date + '(' + weatherResults.weather_data[0].weather + ')'
-                    var data1 = weatherResults.weather_data[1].date + '(' + weatherResults.weather_data[1].weather + ')'
-                    var data2 = weatherResults.weather_data[2].date + '(' + weatherResults.weather_data[2].weather + ')'
-                    var data3 = weatherResults.weather_data[3].date + '(' + weatherResults.weather_data[3].weather + ')'
-                    console.log(data0)
-                    console.log(data1)
-                    console.log(data2)
-                    console.log(data3)
-                    var wendu0 = weatherResults.weather_data[0].temperature.slice(0, 2)
-                    var wendu1 = weatherResults.weather_data[1].temperature.slice(0, 2)
-                    var wendu2 = weatherResults.weather_data[2].temperature.slice(0, 2)
-                    var wendu3 = weatherResults.weather_data[3].temperature.slice(0, 2)
-                    console.log(wendu0)
-                    console.log(wendu1)
-                    console.log(wendu2)
-                    console.log(wendu3)
-                    var wendu4 = weatherResults.weather_data[0].temperature.slice(5, 7)
-                    var wendu5 = weatherResults.weather_data[1].temperature.slice(5, 7)
-                    var wendu6 = weatherResults.weather_data[2].temperature.slice(5, 7)
-                    var wendu7 = weatherResults.weather_data[3].temperature.slice(5, 7)
-                    console.log(wendu4)
-                    console.log(wendu5)
-                    console.log(wendu6)
-                    console.log(wendu7)
-                    var option = {
-                        title: {
-                            text: city + '最近天气'
-                        },
-                        tooltip: {
-                            trigger: 'axis'
-                        },
-                        legend: {
-                            data: ['最高温度', '最低温度'],
+    }, 5000)
+    //获取天气
+    $.ajax({
+        url:'http://api.map.baidu.com/location/ip?ak=KawiLiQFG552sBQnCWNtv9iluXqrUY12&coor=bd09ll',
+        dataType:'jsonP',
+        success:function (data) {
+            console.log(data)
+            var city=data.content.address
+            console.log(city)
+            $.ajax({
+                url: "http://api.map.baidu.com/telematics/v3/weather?location=" + city + "&output=json&ak=KawiLiQFG552sBQnCWNtv9iluXqrUY12",
+                dataType: 'jsonP',
+                success: function (data) {
+                    // 读取对象
+                    console.log(data)
+                    var str_weather = template('weather', {list: data})
+                    $('.weather').html(str_weather)
+                    //jsonp事件
+                    $('.weather span').hide()
+                    $('.weather p').on('mouseenter', function () {
+                        $('.weather span').stop(true, true).show(500)
+                    })
+                    $('.weather p').on('mouseleave', function () {
+                        $('.weather span').stop(true, true).hide(500)
+                    })
+                    $('#weather_charts').on('click', function () {
+                        var weatherResults = data.results[0];
+                        //console.log(weatherResults)
+                        var data0 = weatherResults.weather_data[0].date + '(' + weatherResults.weather_data[0].weather + ')'
+                        var data1 = weatherResults.weather_data[1].date + '(' + weatherResults.weather_data[1].weather + ')'
+                        var data2 = weatherResults.weather_data[2].date + '(' + weatherResults.weather_data[2].weather + ')'
+                        var data3 = weatherResults.weather_data[3].date + '(' + weatherResults.weather_data[3].weather + ')'
+                        //console.log(data0)
+                        //console.log(data1)
+                        //console.log(data2)
+                        //console.log(data3)
+                        //console.log(weatherResults.weather_data[2].temperature.split('~'));
+                        console.log(weatherResults.weather_data[0].temperature.replace('℃','').split('~'));
+                        console.log(weatherResults.weather_data[1].temperature.replace('℃','').split('~'));
+                        console.log(weatherResults.weather_data[2].temperature.replace('℃','').split('~'));
+                        console.log(weatherResults.weather_data[3].temperature.replace('℃','').split('~'));
+                        var wendu0 = weatherResults.weather_data[0].temperature.replace('℃','').split('~')[0]
+                        var wendu1 = weatherResults.weather_data[1].temperature.replace('℃','').split('~')[0]
+                        var wendu2 = weatherResults.weather_data[2].temperature.replace('℃','').split('~')[0]
+                        var wendu3 = weatherResults.weather_data[3].temperature.replace('℃','').split('~')[0]
+                        //console.log(wendu0)
+                        //console.log(wendu1)
+                        //console.log(wendu2)
+                        //console.log(wendu3)
+                        var wendu4 = weatherResults.weather_data[0].temperature.replace('℃','').split('~')[1]
+                        var wendu5 = weatherResults.weather_data[1].temperature.replace('℃','').split('~')[1]
+                        var wendu6 = weatherResults.weather_data[2].temperature.replace('℃','').split('~')[1]
+                        var wendu7 = weatherResults.weather_data[3].temperature.replace('℃','').split('~')[1]
+                        //console.log(wendu4)
+                        //console.log(wendu5)
+                        //console.log(wendu6)
+                        //console.log(wendu7)
+                        var option = {
+                            title: {
+                                text: city + '最近天气'
+                            },
+                            tooltip: {
+                                trigger: 'axis'
+                            },
+                            legend: {
+                                data: ['最高温度', '最低温度'],
 //					backgroundColor:'rgba(0,0,0,.4)'
-                        },
-                        //折线颜色
-                        color: ['deeppink', 'skyblue'],
-                        toolbox: {
-                            show: true,
-                            feature: {
-                                mark: {show: true},
-                                dataView: {show: true, readOnly: false},
-                                magicType: {show: true, type: ['line', 'bar']},
-                                restore: {show: true},
-                                saveAsImage: {show: true}
-                            }
-                        },
-                        xAxis: {       //直角坐标系 grid 中的 x 轴
-                            type: 'category',
-                            boundaryGap: false,
-                            data: [data0, data1, data2, data3]
-                        },
-                        yAxis: {       //直角坐标系 grid 中的 y 轴
-                            type: 'value',
-                            name: '℃'
-                        },
-                        grid: {
-                            left: '10%',
-                            right: '10%',
-                            bottom: '3%',
-                            containLabel: true
-                        },
-                        series: [      //系列列表
-                            {
-                                name: '最高温度',
-                                type: 'line',
-                                data: [wendu0, wendu1, wendu2, wendu3],
-                                markLine: {
-                                    data: [{type: 'average', name: '平均值'}]
+                            },
+                            //折线颜色
+                            color: ['deeppink', 'skyblue'],
+                            toolbox: {
+                                show: true,
+                                feature: {
+                                    mark: {show: true},
+                                    dataView: {show: true, readOnly: false},
+                                    magicType: {show: true, type: ['line', 'bar']},
+                                    restore: {show: true},
+                                    saveAsImage: {show: true}
                                 }
                             },
-                            {
-                                name: '最低温度',
-                                type: 'line',
-                                data: [wendu4, wendu5, wendu6, wendu7],
-                                markLine: {
-                                    data: [{type: 'average', name: '平均值'}]
-                                }
+                            xAxis: {       //直角坐标系 grid 中的 x 轴
+                                type: 'category',
+                                boundaryGap: false,
+                                data: [data0, data1, data2, data3]
                             },
-                        ],
-                    };
-                    var myChart = echarts.init(document.getElementById('main'));
-                    myChart.setOption(option);
-                })
-            }
-        })
-    });
+                            yAxis: {       //直角坐标系 grid 中的 y 轴
+                                type: 'value',
+                                name: '℃'
+                            },
+                            grid: {
+                                left: '10%',
+                                right: '10%',
+                                bottom: '3%',
+                                containLabel: true
+                            },
+                            series: [      //系列列表
+                                {
+                                    name: '最高温度',
+                                    type: 'line',
+                                    data: [wendu0, wendu1, wendu2, wendu3],
+                                    markLine: {
+                                        data: [{type: 'average', name: '平均值'}]
+                                    }
+                                },
+                                {
+                                    name: '最低温度',
+                                    type: 'line',
+                                    data: [wendu4, wendu5, wendu6, wendu7],
+                                    markLine: {
+                                        data: [{type: 'average', name: '平均值'}]
+                                    }
+                                },
+                            ],
+                        };
+                        var myChart = echarts.init(document.getElementById('main'));
+                        myChart.setOption(option);
+                    })
+                }
+            })
+        }
+    })
 
     //头像
     $('.me').on('mouseenter', function () {
@@ -238,6 +246,28 @@ $(function () {
         }
     }
 
+    //spa侧边栏
+    $('#point').css({
+        top:$('.spa_a')[0].offsetTop+'px'
+    })
+    $('.item').on('mouseenter', function () {
+        console.log($('#point').height())
+        var start=$(this)[0].offsetTop
+        $('#point').show()
+        $('#point').animate({
+            top:start+'px'
+        },'fast')
+        $('#point').addClass('animated zoomIn')
+        //$('#point').animate({
+        //    top:start+'px'
+        //})
+    })
+    $('.spa_a').on('mouseleave', function () {
+        var top=$('#point')[0].offsetTop+$('.item').height()/2-1
+        $('#point').removeClass('animated zoomIn')
+        $('#point').hide()
+    })
+
     //登陆注册按钮
     $('.denglu_b').on('click', function () {
         $('.denglu').css({
@@ -263,6 +293,38 @@ $(function () {
 
 //登陆
 $(function () {
+    var getTips= function (n) {
+        if(n==1){
+            layer.tips('用户名格式正确', '#yonghu_d', {
+                tips: [2, '#78BA32'],
+                anim:2,
+                fixed:true,
+                tipsMore: true
+            });
+        }else if(n==2){
+            layer.tips('用户名格式错误', '#yonghu_d', {
+                tips: [2, '#FF5722'],
+                anim:6,
+                fixed:true,
+                tipsMore: true
+            });
+        }else if(n==3){
+            layer.tips('密码格式正确', '#pwd_d', {
+                tips: [2, '#78BA32'],
+                anim:2,
+                fixed:true,
+                tipsMore: true
+            });
+        }else if(n==4){
+            layer.tips('密码格式错误', '#pwd_d', {
+                tips: [2, '#FF5722'],
+                anim:6,
+                fixed:true,
+                tipsMore: true
+            });
+        }
+
+    }
     var disable0 = false
     var disable1 = false
     $('#denglu').attr("disabled", true);
@@ -271,6 +333,7 @@ $(function () {
         var str = $(this).val()
         var exp = exp.test(str)
         if (exp) {
+            getTips(1)
             console.log('用户名格式正确')
             disable0 = true
             if (disable0 == true && disable1 == true) {
@@ -278,16 +341,18 @@ $(function () {
                 //alert('写数据库')
             }
         } else {
+            getTips(2)
             console.log('用户名格式错误')
             disable0 = false
         }
     })
-    $('#pwd_d').on('blur', function () {
+    $('#pwd_d').on('keyup', function () {
         var exp = /\w{8,16}/
         var str = $(this).val()
         var exp = exp.test(str)
 //            Object.prototype.toString(exp.test(str))
         if (exp) {
+            getTips(3)
             console.log('密码格式正确')
             disable1 = true
             if (disable0 == true && disable1 == true) {
@@ -295,6 +360,7 @@ $(function () {
                 //alert('写数据库')
             }
         } else {
+            getTips(4)
             console.log('密码格式错误')
             disable1 = false
         }
@@ -302,8 +368,15 @@ $(function () {
     $('#denglu').on('click', function () {
         $.post('denglu.php', {name: $('#yonghu_d').val(), pwd: $('#pwd_d').val()}, function (data) {
             console.log(data)
-            if (data != '用户名或密码不正确') {
-
+            if (data == '登陆成功,欢迎您,'+$('#yonghu_d').val()) {
+                $('.denglu').css({
+                    transform:'translateY(-200%)'
+                })
+                $('.zhuce_b').hide()
+                $('.denglu_b').html('欢迎您,'+$('#yonghu_d').val())
+                setTimeout(function () {
+                    $('.denglu').hide()
+                },400)
             }
         })
     })
@@ -311,22 +384,61 @@ $(function () {
 
 //注册
 $(function () {
-//        $.get('lianjiemysql.php', function (data) {
-//            var a=JSON.parse(data)
-//            console.log(a)
-//        })
+    var getTips= function (n) {
+        if(n==1){
+            layer.tips('用户名格式正确', '#yonghu_z', {
+                tips: [2, '#78BA32'],
+                anim:2,
+                fixed:true,
+                tipsMore: true
+            });
+        }else if(n==2){
+            layer.tips('用户名格式错误', '#yonghu_z', {
+                tips: [2, '#FF5722'],
+                anim:6,
+                fixed:true,
+                tipsMore: true
+            });
+        }else if(n==3){
+            layer.tips('密码格式正确', '#pwd_z', {
+                tips: [2, '#78BA32'],
+                anim:2,
+                fixed:true,
+                tipsMore: true
+            });
+        }else if(n==4){
+            layer.tips('密码格式错误', '#pwd_z', {
+                tips: [2, '#FF5722'],
+                anim:6,
+                fixed:true,
+                tipsMore: true
+            });
+        }else if(n==5){
+            layer.tips('密码重复正确', '#repwd', {
+                tips: [2, '#78BA32'],
+                anim:2,
+                fixed:true,
+                tipsMore: true
+            });
+        }else if(n==6){
+            layer.tips('密码重复有误', '#repwd', {
+                tips: [2, '#FF5722'],
+                anim:6,
+                fixed:true,
+                tipsMore: true
+            });
+        }
+    }
     $('#zhuce').attr("disabled", true);
     var disable0 = false
     var disable1 = false
     var disable2 = false
     $('#yonghu_z').on('blur', function () {
         var exp = /^([A-Za-z0-9\u4e00-\u9fa5]{2,18})+$/g
-//            console.log($(this).val())
         var str = $(this).val()
         var exp = exp.test(str)
-//            console.log(exp)
-//            Object.prototype.toString(exp.test(str))
         if (exp) {
+            getTips(1)
             console.log('用户名格式正确')
             $.get('yanzheng.php', {name: $(this).val() + ''}, function (data) {
                 console.log(data)
@@ -337,17 +449,19 @@ $(function () {
                 }
             })
         } else {
+            getTips(2)
             console.log('用户名格式错误')
             disable0 = false
         }
     })
 
-    $('#pwd_z').on('blur', function () {
+    $('#pwd_z').on('keyup', function () {
         var exp = /\w{8,16}/
         var str = $(this).val()
         var exp = exp.test(str)
 //            Object.prototype.toString(exp.test(str))
         if (exp) {
+            getTips(3)
             console.log('密码格式正确')
             disable1 = true
             if (disable0 == true && disable1 == true && disable2 == true) {
@@ -355,16 +469,18 @@ $(function () {
                 //alert('写数据库')
             }
         } else {
+            getTips(4)
             console.log('密码格式错误')
             disable1 = false
         }
     })
 
-    $('#repwd').on('blur', function () {
+    $('#repwd').on('keyup', function () {
 //            var exp=//
         var repwd = $('#repwd').val()
         var pwd = $('#pwd_z').val()
         if (repwd === pwd) {
+            getTips(5)
             console.log('密码重复正确')
             disable2 = true
             if (disable0 == true && disable1 == true && disable2 == true) {
@@ -372,13 +488,25 @@ $(function () {
                 $('#zhuce').attr("disabled", false);
             }
         } else {
+            getTips(6)
             console.log('密码重复有误')
             disable2 = false
         }
     })
 
     $('#zhuce').on('click', function () {
-        $.post('zhuce.php', {name: $('#yonghu_z').val(), pwd: $('#pwd_z').val()}, function () {
+        $.post('zhuce.php', {name: $('#yonghu_z').val(), pwd: $('#pwd_z').val()}, function (data) {
+            console.log(data)
+            if(data=='注册成功'){
+                $('.zhuce').css({
+                    transform:'translateY(-200%)'
+                })
+                $('.denglu_b').hide()
+                $('.zhuce_b').html('欢迎您,'+$('#yonghu_z').val())
+                setTimeout(function () {
+                    $('.zhuce').hide()
+                },400)
+            }
         })
     })
 })

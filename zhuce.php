@@ -6,8 +6,8 @@ $dbname="user";
 
 $uname=$_POST['name'];
 $upwd=$_POST['pwd'];
-echo $uname;
-echo $upwd;
+//echo $uname;
+//echo $upwd;
 // 创建连接
 $conn =mysql_connect($servername, $username, $password);
 
@@ -33,4 +33,5 @@ $result=mysql_query($strsql, $conn);
 //    }
 //    echo json_encode($users);
 mysql_close($conn);
+echo "注册成功"
 ?>
