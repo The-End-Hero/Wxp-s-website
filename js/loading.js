@@ -1,8 +1,8 @@
 //loading效果
-var _pageHeight = document.documentElement.clientHeight,
-    _pageWidth = document.documentElement.clientWidth;
-var _loadingTop = _pageHeight,
-    _loadingLeft = _pageWidth;
+//var _pageHeight = document.documentElement.clientHeight,
+//    _pageWidth = document.documentElement.clientWidth;
+//var _loadingTop = _pageHeight,
+//    _loadingLeft = _pageWidth;
 var _loadingHtml = '<div id="loadDiv"><p id="loading">Loading</p></div>'
 document.write(_loadingHtml);
 document.onreadystatechange = completeLoading;

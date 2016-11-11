@@ -118,7 +118,7 @@ $(function () {
         var autoMove = function () {
             console.log('b')
             loopUl.animate({
-                'transform': 'translateX(' + index * -loopWidth + 'px)',
+                'transform': 'translate3d(' + index * -loopWidth + 'px,0,0)',
                 //'webkitTransform': 'translateX(' + index * -loopWidth + 'px)'
             }, 400, 'ease', function () {
                 //animate回调函数,结束时候执行
@@ -126,13 +126,13 @@ $(function () {
                     index = 1;
                     //
                     loopUl.css({
-                        'transform': 'translateX(' + index * -loopWidth + 'px)',
+                        'transform': 'translate3d(' + index * -loopWidth + 'px,0,0)',
                         //'webkitTransform': 'translateX(' + index * -loopWidth + 'px)'
                     })
                 } else if (index <= 0) {
                     index = 5
                     loopUl.css({
-                        'transform': 'translateX(' + index * -loopWidth + 'px)',
+                        'transform': 'translate3d(' + index * -loopWidth + 'px,0,0)',
                         //'webkitTransform': 'translateX(' + index * -loopWidth + 'px)'
                     })
                 }
@@ -177,7 +177,7 @@ $(function () {
             //console.log(index * -loopWidth+moveX)
             var follow=index * -loopWidth+moveX
             loopUl.css({
-                'transform': 'translateX(' + follow + 'px)',
+                'transform': 'translate3d(' + follow + 'px,0,0)',
                 //'webkitTransform': 'translateX(' + index * -loopWidth+moveX + 'px)'
             })
             //return {
@@ -234,7 +234,7 @@ $(function () {
         var str = template('ifm', {list: data})
         $('.ajax-8').html(str)
     })
-    //注册事件
+    //模块单个注册事件
     var navs = document.querySelectorAll('.pic>div')
     for (var i = 0; i < navs.length; i++) {
 
@@ -267,6 +267,7 @@ $(function () {
             //.index()天坑啊,如果是选择器是返回相对兄弟元素的位置,如果是dom元素集合是返回第一个元素的位置.....
         })
     }
+    //每个模块对应的内容
     var changeTab = function (n) {
         $.getJSON('./info/mobile_' + n + '.json', function (data) {
             //console.log(data)

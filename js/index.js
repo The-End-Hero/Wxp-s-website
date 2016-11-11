@@ -27,10 +27,18 @@ $(function () {
                     $('.weather span').hide()
                     $('.weather p').on('mouseenter', function () {
                         $('.weather span').stop(true, true).show(500)
+                        //layer.tips('用户名格式正确', '.weather p', {
+                        //    tips: [2, '#78BA32'],
+                        //    anim:2,
+                        //    fixed:true,
+                        //    tipsMore: true,
+                        //    content:$('.weather span')
+                        //});
                     })
                     $('.weather p').on('mouseleave', function () {
                         $('.weather span').stop(true, true).hide(500)
                     })
+
                     $('#weather_charts').on('click', function () {
                         var weatherResults = data.results[0];
                         //console.log(weatherResults)
@@ -193,16 +201,16 @@ $(function () {
     //.left拉出效果
     $('.left').on('click', function () {
         $('#spa').css({
-            transform: 'translateX(0)'
+            transform: 'translate3d(0,0,0)'
         })
         setTimeout(function () {
             $('#spa>.spa_bottom').css({
-                transform: 'translateX(0)'
+                transform: 'translate3d(0,0,0)'
             })
         }, 1000)
         setTimeout(function () {
             $('#spa>.spa_left').css({
-                transform: 'translateY(0)'
+                transform: 'translate3d(0,0,0)'
             })
         }, 2000)
     })
@@ -246,7 +254,7 @@ $(function () {
         }
     }
 
-    //spa侧边栏色块 变大 变小 效果
+    //spa侧边栏色块 变大 变小 跟随 效果
     $('#point').css({
         top:$('.spa_a')[0].offsetTop+'px'
     })
@@ -266,7 +274,7 @@ $(function () {
         $('#point').addClass('animated zoomOut')
     })
 
-    //登陆注册按钮
+    //登陆注册按钮事件
     $('.denglu_b').on('click', function () {
         $('.denglu').css({
             transform: 'translateY(0)'
@@ -288,6 +296,7 @@ $(function () {
         })
     })
 })
+
 
 //登陆
 $(function () {

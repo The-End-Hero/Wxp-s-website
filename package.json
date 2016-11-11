@@ -1,0 +1,14 @@
+{
+  "name": "mywebsite",
+  "version": "1.0.0",
+  "description": "wxp's website",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "The-End-Hero",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
+}
