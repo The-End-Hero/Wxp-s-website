@@ -307,13 +307,13 @@ html,body{
 }
 .main{
     position: relative;
-    padding-top: 40px;
+    /*padding-top: 40px;*/
     background: url("../images/xingkong.jpg"),url("../images/bg.jpg")no-repeat;
     background-size: 100% 100%;
     /*background-color: white;*/
     width: 100%;
     /*height: 100%;*/
-    height: 900px;
+    height: 100%;
     transition: all .5s ease-in;
 }
 .main.fix{
@@ -333,14 +333,16 @@ html,body{
 }
 
 .bottom{
+    position: fixed;
+    bottom: 0px;
     background-color: black;
     width: 100%;
-    height: 60px;
+    height: 40px;
 }
 .bottom a{
     display: block;
     text-align: center;
-    line-height: 60px;
+    line-height: 40px;
     color: #ccc;
     font-family: '微软雅黑';
     font-size: 12px;
@@ -720,7 +722,7 @@ html,body{
 #spa>.spa_left{
     position: fixed;
     top: 45px;
-    width: 30%;
+    width: 25%;
     left: 0px;
     height: 100%;
     z-index: 5;
@@ -731,7 +733,7 @@ html,body{
 }
 #spa>.spa_left>.span_point{
     position: fixed;
-    /*z-index: 1111;*/
+    z-index: 11;
     left: 0px;
     width: 10px;
     height: 100%;
@@ -751,11 +753,13 @@ html,body{
 }
 #spa>.spa_left .item{
     display: block;
+    position: relative;
     font-family: '微软雅黑','courier';
     font-size: 18px;
     line-height: 40px;
     color: darkgray;
     padding-left: 15px;
+    box-sizing: border-box;
     overflow:hidden;
     white-space:nowrap;
     text-overflow:ellipsis;
@@ -772,6 +776,6 @@ html,body{
 }
 #main{
     position: absolute;
-    top: 14%;
-    right:5%;
+    top: 100px;
+    right:1%;
 }
