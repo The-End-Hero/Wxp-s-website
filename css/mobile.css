@@ -55,8 +55,8 @@ body,html{
     width: 70rem;
     height: 100%;
     /*z-index: 9;*/
-    transform: translateX(-10rem);
-    -webkit-transform: translateX(-10rem);
+    transform: translate3d(-10rem,0,0);
+    -webkit-transform: translate3d(-10rem,0,0);
 }
 #loop-pic>#loopUl>li{
     width: 10rem;

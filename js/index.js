@@ -8,25 +8,39 @@ $(function () {
         $('.main').toggleClass('fix')
     }, 5000)
     //获取天气
+    var getMain= {
+        city:'',
+        weatherData:{}
+    }
     $.ajax({
         url:'http://api.map.baidu.com/location/ip?ak=KawiLiQFG552sBQnCWNtv9iluXqrUY12&coor=bd09ll',
         dataType:'jsonP',
         success:function (data) {
             console.log(data)
-            var city=data.content.address
+            getMain.city=data.content.address
             console.log(city)
             $.ajax({
-                url: "http://api.map.baidu.com/telematics/v3/weather?location=" + city + "&output=json&ak=KawiLiQFG552sBQnCWNtv9iluXqrUY12",
+                url: "http://api.map.baidu.com/telematics/v3/weather?location=" + getMain.city + "&output=json&ak=KawiLiQFG552sBQnCWNtv9iluXqrUY12",
                 dataType: 'jsonP',
                 success: function (data) {
                     // 读取对象
-                    console.log(data)
+                    //console.log(data)
+                    getMain.weatherData=data
+                    console.log(getMain)
                     var str_weather = template('weather', {list: data})
                     $('.weather').html(str_weather)
                     //jsonp事件
                     $('.weather span').hide()
                     $('.weather p').on('mouseenter', function () {
-                        $('.weather span').stop(true, true).show(500)
+                        //$('.weather span').stop(true, true).show(500)
+                        var that = this;
+                        layer.tips($('.weather span').html(), that,{
+                            tips: [1, '#2F4056'],
+                            time: 4000,
+                            fixed:true,
+                            area: '300px',
+                            skin:'tips_w'
+                        }); //在元素的事件回调体中，follow直接赋予this即可
                         //layer.tips('用户名格式正确', '.weather p', {
                         //    tips: [2, '#78BA32'],
                         //    anim:2,
@@ -35,9 +49,9 @@ $(function () {
                         //    content:$('.weather span')
                         //});
                     })
-                    $('.weather p').on('mouseleave', function () {
-                        $('.weather span').stop(true, true).hide(500)
-                    })
+                    //$('.weather p').on('mouseleave', function () {
+                    //    $('.weather span').stop(true, true).hide(500)
+                    //})
 
                     $('#weather_charts').on('click', function () {
                         var weatherResults = data.results[0];
@@ -218,16 +232,16 @@ $(function () {
     //spa_right效果
     $('.spa_right').on('click', function () {
         $('#spa>.spa_left').css({
-            transform: 'translateY(-110%)'
+            transform: 'translate3d(0,-110%,0)'
         })
         setTimeout(function () {
             $('#spa>.spa_bottom').css({
-                transform: 'translateX(-200%)'
+                transform: 'translate3d(-200%,0,0)'
             })
         }, 1000)
         setTimeout(function () {
             $('#spa').css({
-                transform: 'translateX(100%)'
+                transform: 'translate3d(100%,0,0)'
             })
         }, 2000)
     })
@@ -277,22 +291,22 @@ $(function () {
     //登陆注册按钮事件
     $('.denglu_b').on('click', function () {
         $('.denglu').css({
-            transform: 'translateY(0)'
+            transform: 'translate3d(0,0,0)'
         })
     })
     $('.zhuce_b').on('click', function () {
         $('.zhuce').css({
-            transform: 'translateY(0)'
+            transform: 'translate3d(0,0,0)'
         })
     })
     $('.zhuce_close').on('click', function () {
         $('.zhuce').css({
-            transform:'translateY(-200%)'
+            transform:'translate3d(0,-200%,0)'
         })
     })
     $('.denglu_close').on('click', function () {
         $('.denglu').css({
-            transform:'translateY(-200%)'
+            transform:'translate3d(0,-200%,0)'
         })
     })
 })
