@@ -55,8 +55,10 @@ body,html{
     width: 70rem;
     height: 100%;
     /*z-index: 9;*/
+    -webkit-transform-style: preserve-3d;
     transform: translate3d(-10rem,0,0);
     -webkit-transform: translate3d(-10rem,0,0);
+    -webkit-backface-visibility: hidden;
 }
 #loop-pic>#loopUl>li{
     width: 10rem;
@@ -119,6 +121,7 @@ body,html{
 .main>.pic>div:nth-of-type(7){background-color: darkorange}
 .main>.pic>div:nth-of-type(8){background-color: indigo}
 .main>.pic>div>a{
+    -webkit-user-select:none;
     display: block;
     margin: auto;
     text-align: center;
