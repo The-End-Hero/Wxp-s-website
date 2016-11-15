@@ -55,10 +55,10 @@ body,html{
     width: 70rem;
     height: 100%;
     /*z-index: 9;*/
-    -webkit-transform-style: preserve-3d;
+    /*-webkit-transform-style: preserve-3d;*/
     transform: translate3d(-10rem,0,0);
     -webkit-transform: translate3d(-10rem,0,0);
-    -webkit-backface-visibility: hidden;
+    /*-webkit-backface-visibility: hidden;*/
 }
 #loop-pic>#loopUl>li{
     width: 10rem;
