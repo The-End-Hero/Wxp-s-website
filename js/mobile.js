@@ -200,7 +200,7 @@ $(function () {
         //吸附效果
         var adsorption= function () {
             //var distance=endPosition-startPosition
-            if(Math.abs(moveX)>loopWidth/4){
+            if(Math.abs(moveX)>loopWidth/5){
                 if(moveX>0){
                     index--
                 }else{
@@ -237,8 +237,10 @@ $(function () {
     //模块单个注册事件
     var navs = document.querySelectorAll('.pic>div')
     for (var i = 0; i < navs.length; i++) {
-
-        $(navs[i]).on('touchend', function (e) {
+        $(navs[i]).on('touchmove', function (e) {
+            e.preventDefault();
+        })
+        $(navs[i]).on('touchstart', function (e) {
             //console.log(e.changedTouches[0])
             var page_X = e.changedTouches[0].pageX//鼠标所在位置X
             var page_Y = e.changedTouches[0].pageY//鼠标所在位置Y

@@ -1,8 +1,4 @@
 $(function () {
-    $('.main').css({
-        //height: '' + window.screen.height,
-        //width:''+window.screen.width
-    })
     //main切换背景图片
     var timer_bg = setInterval(function () {
         $('.main').toggleClass('fix')
@@ -95,7 +91,7 @@ $(function () {
 //					backgroundColor:'rgba(0,0,0,.4)'
                             },
                             //折线颜色
-                            color: ['deeppink', 'skyblue'],
+                            color: ['purple','skyblue'],
                             toolbox: {
                                 show: true,
                                 feature: {
@@ -125,6 +121,7 @@ $(function () {
                                 {
                                     name: '最高温度',
                                     type: 'line',
+                                    areaStyle: {normal:{}},
                                     data: [wendu0, wendu1, wendu2, wendu3],
                                     markLine: {
                                         data: [{type: 'average', name: '平均值'}]
@@ -133,6 +130,7 @@ $(function () {
                                 {
                                     name: '最低温度',
                                     type: 'line',
+                                    areaStyle: {normal:{}},
                                     data: [wendu4, wendu5, wendu6, wendu7],
                                     markLine: {
                                         data: [{type: 'average', name: '平均值'}]
