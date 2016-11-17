@@ -13,136 +13,102 @@ $(function () {
             console.log(data)
             city=data.content.address
             console.log(city)
-            $.ajax({
-                url: "http://api.map.baidu.com/telematics/v3/weather?location=" + city + "&output=json&ak=KawiLiQFG552sBQnCWNtv9iluXqrUY12",
-                dataType: 'jsonP',
-                success: function (data) {
-                    // 读取对象
-                    //console.log(data)
-                    weatherData=data
-                    console.log(weatherData)
-                    var str_weather = template('weather', {list: data})
-                    $('.weather').html(str_weather)
-                    //jsonp事件
-                    $('.weather span').hide()
-                    $('.weather p').on('mouseenter', function () {
-                        $('.weather span').stop(true, true).show(500)
-                        //var that = this;
-                        //layer.tips($('.weather span').html(), that,{
-                        //    tips: [1, '#2F4056'],
-                        //    time: 4000,
-                        //    fixed:true,
-                        //    area: '300px',
-                        //    skin:'tips_w'
-                        //}); //在元素的事件回调体中，follow直接赋予this即可
-                        //layer.tips('用户名格式正确', '.weather p', {
-                        //    tips: [2, '#78BA32'],
-                        //    anim:2,
-                        //    fixed:true,
-                        //    tipsMore: true,
-                        //    content:$('.weather span')
-                        //});
-                    })
-                    $('.weather p').on('mouseleave', function () {
-                        $('.weather span').stop(true, true).hide(500)
-                    })
-
-                    $('#weather_charts').on('click', function () {
-                        var weatherResults = data.results[0];
-                        //console.log(weatherResults)
-                        var data0 = weatherResults.weather_data[0].date + '(' + weatherResults.weather_data[0].weather + ')'
-                        var data1 = weatherResults.weather_data[1].date + '(' + weatherResults.weather_data[1].weather + ')'
-                        var data2 = weatherResults.weather_data[2].date + '(' + weatherResults.weather_data[2].weather + ')'
-                        var data3 = weatherResults.weather_data[3].date + '(' + weatherResults.weather_data[3].weather + ')'
-                        //console.log(data0)
-                        //console.log(data1)
-                        //console.log(data2)
-                        //console.log(data3)
-                        //console.log(weatherResults.weather_data[2].temperature.split('~'));
-                        console.log(weatherResults.weather_data[0].temperature.replace('℃','').split('~'));
-                        console.log(weatherResults.weather_data[1].temperature.replace('℃','').split('~'));
-                        console.log(weatherResults.weather_data[2].temperature.replace('℃','').split('~'));
-                        console.log(weatherResults.weather_data[3].temperature.replace('℃','').split('~'));
-                        var wendu0 = weatherResults.weather_data[0].temperature.replace('℃','').split('~')[0]
-                        var wendu1 = weatherResults.weather_data[1].temperature.replace('℃','').split('~')[0]
-                        var wendu2 = weatherResults.weather_data[2].temperature.replace('℃','').split('~')[0]
-                        var wendu3 = weatherResults.weather_data[3].temperature.replace('℃','').split('~')[0]
-                        //console.log(wendu0)
-                        //console.log(wendu1)
-                        //console.log(wendu2)
-                        //console.log(wendu3)
-                        var wendu4 = weatherResults.weather_data[0].temperature.replace('℃','').split('~')[1]
-                        var wendu5 = weatherResults.weather_data[1].temperature.replace('℃','').split('~')[1]
-                        var wendu6 = weatherResults.weather_data[2].temperature.replace('℃','').split('~')[1]
-                        var wendu7 = weatherResults.weather_data[3].temperature.replace('℃','').split('~')[1]
-                        //console.log(wendu4)
-                        //console.log(wendu5)
-                        //console.log(wendu6)
-                        //console.log(wendu7)
-                        var option = {
-                            title: {
-                                text: city + '最近天气'
-                            },
-                            tooltip: {
-                                trigger: 'axis'
-                            },
-                            legend: {
-                                data: ['最高温度', '最低温度'],
-//					backgroundColor:'rgba(0,0,0,.4)'
-                            },
-                            //折线颜色
-                            color: ['purple','skyblue'],
-                            toolbox: {
-                                show: true,
-                                feature: {
-                                    mark: {show: true},
-                                    dataView: {show: true, readOnly: false},
-                                    magicType: {show: true, type: ['line', 'bar']},
-                                    restore: {show: true},
-                                    saveAsImage: {show: true}
-                                }
-                            },
-                            xAxis: {       //直角坐标系 grid 中的 x 轴
-                                type: 'category',
-                                boundaryGap: false,
-                                data: [data0, data1, data2, data3]
-                            },
-                            yAxis: {       //直角坐标系 grid 中的 y 轴
-                                type: 'value',
-                                name: '℃'
-                            },
-                            grid: {
-                                left: '10%',
-                                right: '5%',
-                                bottom: '3%',
-                                containLabel: true
-                            },
-                            series: [      //系列列表
-                                {
-                                    name: '最高温度',
-                                    type: 'line',
-                                    areaStyle: {normal:{}},
-                                    data: [wendu0, wendu1, wendu2, wendu3],
-                                    markLine: {
-                                        data: [{type: 'average', name: '平均值'}]
-                                    }
-                                },
-                                {
-                                    name: '最低温度',
-                                    type: 'line',
-                                    areaStyle: {normal:{}},
-                                    data: [wendu4, wendu5, wendu6, wendu7],
-                                    markLine: {
-                                        data: [{type: 'average', name: '平均值'}]
-                                    }
-                                },
-                            ],
-                        };
-                        var myChart = echarts.init(document.getElementById('main'));
-                        myChart.setOption(option);
-                    })
-                }
-            })
+            var str_weather = template('weather', {list: city})
+            $('.weather').html(str_weather)
+            if(city=='上海市'){
+                weatherData='shanghai'
+            }else if(city=='南京市'){
+                weatherData='nanjing'
+            }
+            //$.ajax({
+            //    type:'get',
+            //    url: 'http://api.openweathermap.org/data/2.5/forecast/daily?q='+weatherData+'&mode=xml&units=metric&cnt=5&appid=2fdaada6ba75fb4f130be573e22202a7',
+            //    dataType: 'xml',
+            //    success: function (d) {
+            //        // 读取对象
+            //        console.log(d)
+            //        $('#weather_charts').on('click', function () {
+            //            //获取城市的名字使用jquery获取dom的方式
+            //            var cityName = $(d).find('weatherdata>location>name')[0].innerHTML;
+            //
+            //            //定义三个空的数组获取日期列表,最高气温列表,最低气温列表
+            //            var datalist = [],tempMax = [],tempMin = [];
+            //
+            //            $(d).find('weatherdata>forecast>time').each(function () {
+            //                datalist.push($(this).attr('day'));
+            //                tempMin.push($(this).find('temperature').attr('min'));
+            //                tempMax.push($(this).find('temperature').attr('max'));
+            //            });
+            //
+            //            //echarts 绘图
+            //            var option = {
+            //                title: {
+            //                    text: cityName
+            //                },
+            //                tooltip: {
+            //                    trigger: 'axis'
+            //                },
+            //                legend: {
+            //                    data: ['最高气温', '最低气温']
+            //                },
+            //                toolbox: {
+            //                    show: true,
+            //                    feature: {
+            //                        mark: {show: true},
+            //                        dataView: {show: true, readOnly: false},
+            //                        magicType: {show: true, type: ['line','bar']},
+            //                        restore: {show: true},
+            //                        saveAsImage: {show: true}
+            //                    }
+            //                },
+            //                calculable: true,
+            //                xAxis: [
+            //                    {
+            //                        type: 'category',
+            //                        boundaryGap: false,
+            //                        data: datalist
+            //                    }
+            //                ],
+            //                yAxis: [
+            //                    {
+            //                        type: 'value',
+            //                        axisLabel: {
+            //                            formatter: '{value} °C'
+            //                        }
+            //                    }
+            //                ],
+            //                series: [
+            //                    {
+            //                        name: '最高气温',
+            //                        type: 'line',
+            //                        symbol:'none',
+            //                        data: tempMax,
+            //                        markPoint: {
+            //                            data: [{type: 'max', name: '最大值'}, {type: 'min', name: '最小值'}]
+            //                        },
+            //                        markLine: {
+            //                            data: [{type: 'average', name: '平均值'}]
+            //                        }
+            //                    },
+            //                    {
+            //                        name: '最低气温',
+            //                        type: 'line',
+            //                        symbol:'none',
+            //                        data: tempMin,
+            //                        markPoint: {
+            //                            data: [{name: '近日最低', value: -2, xAxis: 1, yAxis: -1.5}]
+            //                        },
+            //                        markLine: {
+            //                            data: [{type: 'average', name: '平均值'}]
+            //                        }
+            //                    }
+            //                ]
+            //            };
+            //            var myChart = echarts.init(document.getElementById('main'));
+            //            myChart.setOption(option);
+            //        })
+            //    }
+            //})
         }
     })
 

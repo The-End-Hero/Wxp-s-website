@@ -776,6 +776,6 @@ html,body{
 }
 #main{
     position: absolute;
-    top: 100px;
-    right:1%;
+    top: 45px;
+    right: 0px;
 }

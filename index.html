@@ -77,21 +77,21 @@
     </ul>
     <div class='up iconfont'>&#xe600;</div>
 </div>
-<div id='spa' ng-app='movie.mainApp'ng-controller='movie.mainCtrl'>
+<div id='spa' ng-app='movie.mainApp' ng-controller='movie.mainCtrl'>
     <div class='spa_bottom'></div>
     <div class='spa_left'>
         <div class='span_point'>
             <span id='point'></span>
         </div>
         <div class='spa_a'>
-            <a class='item t'id='weather_charts' href="#">您所在城市最近的天气情况</a>
+            <a class='item t'id='weather_charts' href="#/weather_city">您所在城市最近的天气情况</a>
             <a class='item' href="#/top250">豆瓣TOP250</a>
-            <a class='item' href="#">用户管理系统</a>
+            <!--<a class='item' href="#">用户管理系统</a>-->
         </div>
 
         <div class='spa_right iconfont'>&#xe600;</div>
     </div>
-    <div id='main'style="width: 70%;height:77%;">
+    <div id='main'ng-view  style="width: 75%;height:77%;">
 
     </div>
 </div>
@@ -105,12 +105,9 @@
     <div class='weather'>
         <script id='weather' type="text/html">
             <p class='p'>
-                您所在的城市:<%=list.results[0].currentCity%></p>
-            <span class='span'>
-                    <%=list.results[0].weather_data[0].date%>
-                    <%=list.results[0].weather_data[0].weather%> </br>
-                建议:<%=list.results[0].index[0].des%>
-                </span>
+                您所在的城市:<%=list%></p>
+            <!--<span class='span'>-->
+                <!--</span>-->
         </script>
     </div>
 
@@ -137,6 +134,17 @@
 <!--<script src="js/demo-1.js"></script>-->
 <script src='node_modules/angular/angular.js'></script>
 <script src='node_modules/angular-route/angular-route.js'></script>
+<!--主模块-->
+<script src="modules/main/module.js"></script>
+<script src="modules/main/route.js"></script>
+<script src="modules/services/httpProServices.js"></script>
+<!--top250-->
+<script src="modules/top250/module.js"></script>
+<script src="modules/top250/route.js"></script>
+<!--weather_city-->
+<script src='modules/weather_city/module.js'></script>
+<script src='modules/weather_city/route.js'></script>
+
 <script src='js/echarts.min.js'></script>
 </body>
 </html>
