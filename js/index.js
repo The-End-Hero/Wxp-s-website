@@ -1,11 +1,12 @@
+var city
 $(function () {
     //main切换背景图片
     var timer_bg = setInterval(function () {
         $('.main').toggleClass('fix')
     }, 5000)
     //获取天气
-    var city
-    var weatherData 
+    //var city
+
     $.ajax({
         url:'http://api.map.baidu.com/location/ip?ak=KawiLiQFG552sBQnCWNtv9iluXqrUY12&coor=bd09ll',
         dataType:'jsonP',
@@ -13,102 +14,23 @@ $(function () {
             console.log(data)
             city=data.content.address
             console.log(city)
-            var str_weather = template('weather', {list: city})
-            $('.weather').html(str_weather)
-            if(city=='上海市'){
-                weatherData='shanghai'
-            }else if(city=='南京市'){
-                weatherData='nanjing'
-            }
-            //$.ajax({
-            //    type:'get',
-            //    url: 'http://api.openweathermap.org/data/2.5/forecast/daily?q='+weatherData+'&mode=xml&units=metric&cnt=5&appid=2fdaada6ba75fb4f130be573e22202a7',
-            //    dataType: 'xml',
-            //    success: function (d) {
-            //        // 读取对象
-            //        console.log(d)
-            //        $('#weather_charts').on('click', function () {
-            //            //获取城市的名字使用jquery获取dom的方式
-            //            var cityName = $(d).find('weatherdata>location>name')[0].innerHTML;
-            //
-            //            //定义三个空的数组获取日期列表,最高气温列表,最低气温列表
-            //            var datalist = [],tempMax = [],tempMin = [];
-            //
-            //            $(d).find('weatherdata>forecast>time').each(function () {
-            //                datalist.push($(this).attr('day'));
-            //                tempMin.push($(this).find('temperature').attr('min'));
-            //                tempMax.push($(this).find('temperature').attr('max'));
-            //            });
-            //
-            //            //echarts 绘图
-            //            var option = {
-            //                title: {
-            //                    text: cityName
-            //                },
-            //                tooltip: {
-            //                    trigger: 'axis'
-            //                },
-            //                legend: {
-            //                    data: ['最高气温', '最低气温']
-            //                },
-            //                toolbox: {
-            //                    show: true,
-            //                    feature: {
-            //                        mark: {show: true},
-            //                        dataView: {show: true, readOnly: false},
-            //                        magicType: {show: true, type: ['line','bar']},
-            //                        restore: {show: true},
-            //                        saveAsImage: {show: true}
-            //                    }
-            //                },
-            //                calculable: true,
-            //                xAxis: [
-            //                    {
-            //                        type: 'category',
-            //                        boundaryGap: false,
-            //                        data: datalist
-            //                    }
-            //                ],
-            //                yAxis: [
-            //                    {
-            //                        type: 'value',
-            //                        axisLabel: {
-            //                            formatter: '{value} °C'
-            //                        }
-            //                    }
-            //                ],
-            //                series: [
-            //                    {
-            //                        name: '最高气温',
-            //                        type: 'line',
-            //                        symbol:'none',
-            //                        data: tempMax,
-            //                        markPoint: {
-            //                            data: [{type: 'max', name: '最大值'}, {type: 'min', name: '最小值'}]
-            //                        },
-            //                        markLine: {
-            //                            data: [{type: 'average', name: '平均值'}]
-            //                        }
-            //                    },
-            //                    {
-            //                        name: '最低气温',
-            //                        type: 'line',
-            //                        symbol:'none',
-            //                        data: tempMin,
-            //                        markPoint: {
-            //                            data: [{name: '近日最低', value: -2, xAxis: 1, yAxis: -1.5}]
-            //                        },
-            //                        markLine: {
-            //                            data: [{type: 'average', name: '平均值'}]
-            //                        }
-            //                    }
-            //                ]
-            //            };
-            //            var myChart = echarts.init(document.getElementById('main'));
-            //            myChart.setOption(option);
-            //        })
-            //    }
-            //})
+            $.ajax({
+                url: "http://api.map.baidu.com/telematics/v3/weather?location=" + city + "&output=json&ak=KawiLiQFG552sBQnCWNtv9iluXqrUY12",
+                dataType: 'jsonP',
+                success: function (data) {
+                    console.log(data)
+                    var str_weather = template('weather', {list: data})
+                    $('.weather').html(str_weather)
+                    //jsonp事件
+                    $('.weather span').hide()
+                    $('.weather p').on('mouseenter', function () {
+                        $('.weather span').stop(true, true).show(500)
+                    })
+                    $('.weather p').on('mouseleave', function () {
+                        $('.weather span').stop(true, true).hide(500)
+                    })
+                }
+            })
         }
     })
 
@@ -291,6 +213,7 @@ $(function () {
             transform:'translate3d(0,-200%,0)'
         })
     })
+
 })
 
 
