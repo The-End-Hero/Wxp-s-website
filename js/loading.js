@@ -8,7 +8,8 @@ document.write(_loadingHtml);
 document.onreadystatechange = completeLoading;
 function completeLoading() {
     if (document.readyState == 'complete' || document.readyState == 'loaded') {
-        window.setTimeout(toRemove, 1000)
+        //window.setTimeout(toRemove, 1000)
+        toRemove()
     }
 }
 function toRemove() {
